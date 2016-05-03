@@ -1,11 +1,12 @@
-request = require("request");
-request = require("should");
+var request = require("request");
+var should = require("should");
+var expect = require("chai").expect;
 
 describe('Setup', function() {
   it('should display hello world on the page', function(done) {
-    request.get('/', function(err, response, body) {
+    request.get('http://localhost:3000', function(err, response, body) {
       response.statusCode.should.equal(200);
-      body.should.include("Hello World");
+      expect(body).to.include("Hello World");
       done();
     });
   });
