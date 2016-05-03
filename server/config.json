@@ -8,7 +8,7 @@
     "dialect": "postgres"
   },
   "test": {
-    "username": "root",
+    "username": "Kohler",
     "password": null,
     "database": "socialcal_test",
     "host": "127.0.0.1",
