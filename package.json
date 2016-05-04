@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "bower": "^1.7.9",
+    "env-test": "^1.0.0",
     "eslint-config-airbnb": "^8.0.0",
     "eslint-plugin-react": "^5.0.1",
     "expect.js": "^0.3.1",

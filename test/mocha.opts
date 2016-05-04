@@ -1,1 +1,3 @@
+./test/mocha_backend
 --recursive
+--require=env-test
