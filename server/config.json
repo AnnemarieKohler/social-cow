@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "Kohler",
+    "password": null,
+    "database": "socialcal_development",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "Kohler",
+    "password": null,
+    "database": "socialcal_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "socialcal_production",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
