@@ -9,7 +9,7 @@
   </head>
 
   <body>
-    <section ng-model="socialCalController as ctrl">
+    <section ng-controller="socialCalController as ctrl">
       <section>
         <form id="new-event-form">
           <input id="new-event-title" ng-model="eventTitle" placeholder="Event title">
@@ -19,7 +19,7 @@
         </form>
       </section>
 
-      <section>
+      <section id="events">
         <ul>
           <li ng-repeat="event in ctrl.events">
             {{ event.title }}, {{ event.date }}, {{ event.time }}
