@@ -29,7 +29,12 @@
     "eslint-config-airbnb": "^8.0.0",
     "eslint-plugin-react": "^5.0.1",
     "expect.js": "^0.3.1",
+    "jasmine-core": "^2.4.1",
     "jasmine-spec-reporter": "^2.4.0",
+    "karma": "^0.13.22",
+    "karma-chrome-launcher": "^1.0.1",
+    "karma-jasmine": "^1.0.2",
+    "karma-spec-reporter": "0.0.26",
     "protractor": "^3.3.0"
   }
 }

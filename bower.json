@@ -3,7 +3,9 @@
   "description": "",
   "main": "",
   "authors": [
-    "Annemarie Kohler", "Yasmin Green", "Paul Rees"
+    "Annemarie Kohler",
+    "Yasmin Green",
+    "Paul Rees"
   ],
   "license": "MIT",
   "homepage": "https://github.com/AnnemarieKohler/social-calendar",
@@ -16,5 +18,8 @@
   ],
   "dependencies": {
     "angular": "^1.5.5"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.5.5"
   }
 }
