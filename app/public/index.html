@@ -3,10 +3,35 @@
   <head>
     <meta charset="utf-8">
     <title>SocialCal</title>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>    <script type="text/javascript" src="/javascripts/app.js"></script>
-
-
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script type="text/javascript" src="/javascripts/app.js"></script>
+    <script type="text/javascript" src="/javascripts/controllers/socialCalController.js"></script>
   </head>
+
   <body>
+    <section ng-model="socialCalController as ctrl">
+      <section>
+        <form id="new-event-form">
+          <input id="new-event-title" ng-model="eventTitle" placeholder="Event title">
+          <input id="new-event-date" ng-model="eventDate" placeholder="Event date">
+          <input id="new-event-time" ng-model="eventTime" placeholder="Event time">
+          <button id="new-event-submit" type="submit" ng-click="ctrl.addEvent(eventTitle, eventDate, eventTime);">Create</button>
+        </form>
+      </section>
+
+      <section>
+        <ul>
+          <li ng-repeat="event in ctrl.events">
+            {{ event.title }}, {{ event.date }}, {{ event.time }}
+          </li>
+        </ul>
+      </section>
+
+    </section>
+
+
+
+
   </body>
+
 </html>
