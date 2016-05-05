@@ -1,25 +1,23 @@
 describe('socialCalController', function() {
   beforeEach(module('socialCal'));
 
-  var ctrl, $httpBackend;
+  var ctrl, $httpBackend, socialCalPostService;
 
-  var newEvent = { title: 'New Event',
-                   date: '13/05/2016',
-                   time: '19:00' }
+  var title = 'title';
+  var date = '13/05/2016';
+  var time = '19:00';
 
-  beforeEach(inject(function($controller, _$httpBackend_) {
+  beforeEach(inject(function($controller, _socialCalPostService_, _$httpBackend_) {
     ctrl = $controller('socialCalController');
+    socialCalPostService = _socialCalPostService_;
     $httpBackend = _$httpBackend_;
   }));
 
   describe('#addEvent', function() {
-    it('calls $http', function() {
-      $httpBackend.expectPOST("/events").respond(200);
-      ctrl.addEvent(newEvent).then(function(res) {
-        expect(res.status).toEqual(200);
-      });
-
-      $httpBackend.flush();
+    it('calls the socialCalPostService', function(done) {
+      spyOn(socialCalPostService, 'postEventsToDB').and.returnValue(200);
+      expect(ctrl.addEvent()).toEqual(200);
+      done();
     });
-  })
-})
+  });
+});
