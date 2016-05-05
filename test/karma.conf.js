@@ -12,7 +12,7 @@ module.exports = function(config) {
       'app/bower_components/angular/angular.js',
       'app/bower_components/angular-mocks/angular-mocks.js',
       'app/public/javascripts/**/*.js',
-      'test/unit/**/*.js'
+      'test/client/**/*.js'
     ],
 
     exclude: [
