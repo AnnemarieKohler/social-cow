@@ -13,7 +13,7 @@ angular
 
       return $http.post(url, data, headers).then(function(res) {
         self.status = '';
-        console.log(res)
+        // console.log(res)
         return res;
       }).catch(function() {
         return self.status = 'Failed';

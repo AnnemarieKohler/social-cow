@@ -12,7 +12,7 @@ describe('socialCalPostService', function() {
     $httpBackend = _$httpBackend_;
   }));
 
-  describe('#addEvent', function() {
+  describe('#postEventsToDB', function() {
     it('calls $http', function() {
       $httpBackend.expectPOST("/events").respond(200);
       socialCalPostService.postEventsToDB(newEventDetails).then(function(res) {
