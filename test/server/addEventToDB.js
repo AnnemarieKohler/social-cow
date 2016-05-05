@@ -1,7 +1,7 @@
 var request = require("request");
 var should = require("should");
 var expect = require("chai").expect;
-var models = require('../../server/models/index')
+var models = require('../../app/private/server/models/index')
 var Sequelize = require('sequelize');
 
 before(function(done) {
