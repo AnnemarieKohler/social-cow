@@ -9,12 +9,12 @@ angular
                        time: eventTime };
 
       var req = {
-        // method: 'POST',
+        method: 'POST',
         url: '/events',
         headers: { 'Content-Type': 'application/json' },
         data: JSON.stringify(formData)
       };
-      console.log(Object.keys($http));
+      // console.log(Object.keys($http));
       $http.post(req);
     };
   }]);
