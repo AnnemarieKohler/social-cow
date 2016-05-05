@@ -1,18 +1,22 @@
 describe('socialCalController', function() {
   beforeEach(module('socialCal'));
 
-  var ctrl;
+  var ctrl, httpBackend;
 
-  beforeEach(inject(function($controller) {
+  var newEvent = { title: 'New Event',
+                   date: '13/05/2016',
+                   time: '19:00' }
+
+  beforeEach(inject(function($controller, $httpBackend) {
     ctrl = $controller('socialCalController');
+    httpBackend = $httpBackend;
+    spyOn(httpBackend, "post");
   }))
 
-  it('adds a new event', function() {
-    ctrl.addEvent('New Event', '13/05/2016', '19:00');
-
-    var newEvent = {title: 'New Event',
-                    date: '13/05/2016',
-                    time: '19:00'}
-    expect(ctrl.events.pop()).toEqual(newEvent);
-  });
+  describe('#addEvent', function() {
+    it('calls $http', function() {
+      ctrl.addEvent(newEvent);
+      expect(httpBackend.post().calls.any()).toEqual(true);
+    });
+  })
 })
