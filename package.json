@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./app/bin/www",
-    "test": "karma start test/karma.conf.js"
+    "test": "karma start test/karma.conf.js",
+    "e2e": "NODE_ENV=test npm start"
   },
   "dependencies": {
     "body-parser": "~1.13.2",

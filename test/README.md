@@ -22,6 +22,7 @@ mocha
 ```
 
 To start the e2e tests run the following in three separate terminal windows:
-1. `http-server start`
+1. `http-server`
 2. `webdriver-manager start`
-3. `protractor test/protractor.conf.js`
+3. `npm run e2e`
+4. `protractor test/protractor.conf.js`

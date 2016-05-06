@@ -14,8 +14,9 @@ describe('socialCalendar', function() {
     $('#new-event-submit').click();
     browser.get('/');
     var newEvent = $$('#events ul li').last().getText();
+    // console.log($$('#events ul li').last().getText());
     expect(newEvent).toContain('New Event');
-    expect(newEvent).toContain('13/05/2016');
+    expect(newEvent).toContain('2016-05-13T00:00:00.000Z');
     expect(newEvent).toContain('19:00');
   });
 });
