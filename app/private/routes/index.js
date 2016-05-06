@@ -18,7 +18,13 @@ router.get('/events', function(req, res) {
 });
 
 router.post('/events', function(req, res) {
-  console.log("Post exists");
+  models.Events.findOrCreate({
+    where: {
+      title: req.body.title,
+      date: req.body.date,
+      time: req.body.time
+    }
+  });
 });
 
 module.exports = router;
