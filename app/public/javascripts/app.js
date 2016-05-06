@@ -1,1 +1,1 @@
-angular.module('socialCal', []);
+angular.module('socialCal', ['ui.calendar']);

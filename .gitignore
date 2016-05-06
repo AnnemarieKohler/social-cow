@@ -23,7 +23,7 @@ coverage
 build/Release
 
 # Dependency directory
-app/bower_components
+app/public/bower_components
 node_modules
 
 # Debug log from npm
