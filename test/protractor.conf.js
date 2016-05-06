@@ -5,5 +5,6 @@ exports.config = {
   onPrepare: function() {
     var SpecReporter = require('jasmine-spec-reporter');
     jasmine.getEnv().addReporter(new SpecReporter({displayStackTrace: 'all'}));
-  }
+  },
+  allScriptsTimeout: 600000
 }
