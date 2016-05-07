@@ -20,4 +20,14 @@ describe('socialCalController', function() {
       done();
     });
   });
+
+  describe('#signUpUser', function() {
+    it('creates a new user', function(done) {
+      var username = "Test User";
+      var password = "password";
+      spyOn(socialCalPostService, 'postUserToDB').and.returnValue(200);
+      expect(ctrl.signUpUser(username,password)).toEqual(200);
+      done();
+    });
+  });
 });
