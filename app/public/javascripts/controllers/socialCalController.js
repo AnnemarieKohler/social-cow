@@ -12,23 +12,23 @@ angular
 
     socialCalGetService.getEventsFromDB().then(function(events) {
       return events.map(function(singleEvent) {
-        console.log(self.eventSources);
-        console.log(typeof singleEvent.date);
-        console.log(singleEvent.time);
         return self.eventSources.push({
           title: singleEvent.title,
-          start: "2016-05-06T09:00"
+          start: "2016-05-06T09:00",
+          color: "blue"
         });
       });
     });
 
     self.addEvent = function(eventTitle, eventDate, eventTime) {
       console.log("addEvent function");
-      return socialCalPostService.postEventsToDB(eventTitle, eventDate, eventTime);
+      socialCalPostService.postEventsToDB(eventTitle, eventDate, eventTime);
+      $('#calendar').fullCalendar('refetchEvents');
     };
 
     self.alertOnEventClick = function(date, jsEvent, view) {
-      console.log(date.color);
+      date.color = "green";
+      $('#calendar').fullCalendar('updateEvent', date);
     };
 
     self.uiConfig = {
@@ -40,7 +40,6 @@ angular
           center: 'title',
           right: 'today prev,next'
         },
-        color: "yellow",
         eventClick: self.alertOnEventClick,
         eventDrop: self.alertOnDrop,
         eventResize: self.alertOnResize,
