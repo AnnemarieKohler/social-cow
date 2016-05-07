@@ -13,10 +13,10 @@ angular
     socialCalGetService.getEventsFromDB().then(function(events) {
       return events.map(function(singleEvent) {
         var dateTime = moment(singleEvent.date.replace("00:00:00", singleEvent.time)).format('YYYY-MM-DDTHH:mm');
-        console.log("DATETIME " + dateTime)
+        console.log("DATETIME " + dateTime);
         return self.eventSources.push({
           title: singleEvent.title,
-          start: dateTime;
+          start: dateTime
         });
       });
     });
