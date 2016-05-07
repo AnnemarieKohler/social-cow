@@ -26,8 +26,8 @@
       <section>
         <form id="new-event-form">
           <input id="new-event-title" ng-model="eventTitle" placeholder="Event title">
-          <input id="new-event-date" ng-model="eventDate" placeholder="Event date">
-          <input id="new-event-time" ng-model="eventTime" placeholder="Event time">
+          <input type="date" id="new-event-date" ng-model="eventDate" placeholder="Event date">
+          <input type="time" id="new-event-time" ng-model="eventTime" placeholder="Event time">
           <button id="new-event-submit" type="submit" ng-click="ctrl.addEvent(eventTitle, eventDate, eventTime);">Create</button>
         </form>
       </section>
