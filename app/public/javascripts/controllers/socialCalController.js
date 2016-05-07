@@ -4,7 +4,16 @@ angular
     var self = this;
 
     var events = [];
-    self.eventSources = [];
+    self.eventSources = [{
+      title: "PUB PLEASE",
+      start: "2016-05-06T19:00",
+      end: "2016-05-06T21:00"
+    }];
+
+    self.alertOnEventClick = function(date, jsEvent, view) {
+      console.log(date.color);
+    };
+
     self.uiConfig = {
       calendar:{
         height: 450,
@@ -14,11 +23,14 @@ angular
           center: 'title',
           right: 'today prev,next'
         },
-        dayClick: self.alertEventOnClick,
+        color: "yellow",
+        eventClick: self.alertOnEventClick,
         eventDrop: self.alertOnDrop,
-        eventResize: self.alertOnResize
+        eventResize: self.alertOnResize,
+        events: self.eventSources
       }
     };
+
 
     self.addEvent = function(eventTitle, eventDate, eventTime) {
       return socialCalPostService.postEventsToDB(eventTitle, eventDate, eventTime);
