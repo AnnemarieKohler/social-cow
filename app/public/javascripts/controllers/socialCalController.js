@@ -1,9 +1,10 @@
 angular
   .module('socialCal')
-  .controller('socialCalController', ['$http', 'socialCalPostService', function($http, socialCalPostService) {
+  .controller('socialCalController', ['$http', 'socialCalGetService', 'socialCalPostService', function($http, socialCalGetService, socialCalPostService) {
     var self = this;
 
-    var events = [];
+    self.events = [];
+
     self.eventSources = [{
       title: "PUB PLEASE",
       start: "2016-05-06T19:00",
@@ -29,11 +30,6 @@ angular
         eventResize: self.alertOnResize,
         events: self.eventSources
       }
-    };
-
-
-    self.addEvent = function(eventTitle, eventDate, eventTime) {
-      return socialCalPostService.postEventsToDB(eventTitle, eventDate, eventTime);
     };
 
   }]);
