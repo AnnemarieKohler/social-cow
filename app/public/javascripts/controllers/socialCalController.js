@@ -39,7 +39,7 @@ angular
           center: 'title',
           right: 'today prev,next'
         },
-        color: "yellow",
+        timeFormat: "H:mm",
         eventClick: self.alertOnEventClick,
         eventDrop: self.alertOnDrop,
         eventResize: self.alertOnResize,

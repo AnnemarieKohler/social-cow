@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html ng-app="socialCal">
+
   <head>
     <meta charset="utf-8">
     <title>SocialCal</title>
@@ -27,17 +28,9 @@
         <form id="new-event-form">
           <input id="new-event-title" ng-model="eventTitle" placeholder="Event title">
           <input type="date" id="new-event-date" ng-model="eventDate" placeholder="Event date">
-          <input type="time" id="new-event-time" ng-model="eventTime" placeholder="Event time">
+          <input id="new-event-time" ng-model="eventTime" placeholder="Event time">
           <button id="new-event-submit" type="submit" ng-click="ctrl.addEvent(eventTitle, eventDate, eventTime);">Create</button>
         </form>
-      </section>
-
-      <section id="events">
-        <ul>
-          <li ng-repeat="event in ctrl.events">
-            {{ event.title }}, {{ event.date }}, {{ event.time }}
-          </li>
-        </ul>
       </section>
 
       <section>
@@ -45,10 +38,6 @@
       </section>
 
     </section>
-
-
-
-
   </body>
 
 </html>
