@@ -21,10 +21,13 @@ angular
       });
     });
 
+    self.signUpUser = function(username, password) {
+      return socialCalPostService.postUserToDB(username, password);
+    };
+
     self.addEvent = function(eventTitle, eventDate, eventTime) {
       console.log("addEvent function");
-      socialCalPostService.postEventsToDB(eventTitle, eventDate, eventTime);
-      $('#calendar').fullCalendar('refetchEvents');
+      return socialCalPostService.postEventsToDB(eventTitle, eventDate, eventTime);
     };
 
     self.alertOnEventClick = function(date, jsEvent, view) {

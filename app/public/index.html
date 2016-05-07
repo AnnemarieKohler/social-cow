@@ -25,6 +25,15 @@
   <body>
     <section ng-controller="socialCalController as ctrl">
       <section>
+        <form>
+          <input id="new-user-username" ng-model="username" placeholder="Enter username">
+          <input id="new-user-password" ng-model="password" placeholder="Enter password">
+          <button id="new-user-submit" type="submit" ng-click="ctrl.signUpUser(username, password)">Sign Up</button>
+        </form>
+        Welcome, {{ user.username }}
+      </section>
+
+      <section>
         <form id="new-event-form">
           <input id="new-event-title" ng-model="eventTitle" placeholder="Event title">
           <input type="date" id="new-event-date" ng-model="eventDate" placeholder="Event date">
