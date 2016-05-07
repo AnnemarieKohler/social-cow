@@ -27,4 +27,13 @@ router.post('/events', function(req, res) {
   });
 });
 
+router.post('/users', function(req, res) {
+  models.Users.findOrCreate({
+    where: {
+      username: req.body.username,
+      password: req.body.password
+    }
+  });
+});
+
 module.exports = router;
