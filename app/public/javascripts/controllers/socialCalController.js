@@ -12,12 +12,11 @@ angular
 
     socialCalGetService.getEventsFromDB().then(function(events) {
       return events.map(function(singleEvent) {
-        console.log(self.eventSources);
-        console.log(typeof singleEvent.date);
-        console.log(singleEvent.time);
+        var dateTime = moment(singleEvent.date.replace("00:00:00", singleEvent.time)).format('YYYY-MM-DDTHH:mm');
+        console.log("DATETIME " + dateTime)
         return self.eventSources.push({
           title: singleEvent.title,
-          start: "2016-05-06T09:00"
+          start: dateTime;
         });
       });
     });
