@@ -4,12 +4,28 @@ angular
     var self = this;
 
     self.events = [];
-
     self.eventSources = [{
       title: "PUB PLEASE",
       start: "2016-05-06T19:00",
       end: "2016-05-06T21:00"
     }];
+
+    socialCalGetService.getEventsFromDB().then(function(events) {
+      return events.map(function(singleEvent) {
+        console.log(self.eventSources);
+        console.log(typeof singleEvent.date);
+        console.log(singleEvent.time);
+        return self.eventSources.push({
+          title: singleEvent.title,
+          start: "2016-05-06T09:00"
+        });
+      });
+    });
+
+    self.addEvent = function(eventTitle, eventDate, eventTime) {
+      console.log("addEvent function");
+      return socialCalPostService.postEventsToDB(eventTitle, eventDate, eventTime);
+    };
 
     self.alertOnEventClick = function(date, jsEvent, view) {
       console.log(date.color);
