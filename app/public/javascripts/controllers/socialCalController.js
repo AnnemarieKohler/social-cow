@@ -12,10 +12,11 @@ angular
 
     socialCalGetService.getEventsFromDB().then(function(events) {
       return events.map(function(singleEvent) {
+        var dateTime = moment(singleEvent.date.replace("00:00:00", singleEvent.time)).format('YYYY-MM-DDTHH:mm');
+        console.log("DATETIME " + dateTime);
         return self.eventSources.push({
           title: singleEvent.title,
-          start: "2016-05-06T09:00",
-          color: "blue"
+          start: dateTime
         });
       });
     });
@@ -40,6 +41,10 @@ angular
           center: 'title',
           right: 'today prev,next'
         },
+<<<<<<< HEAD
+=======
+        timeFormat: "H:mm",
+>>>>>>> development
         eventClick: self.alertOnEventClick,
         eventDrop: self.alertOnDrop,
         eventResize: self.alertOnResize,
