@@ -41,10 +41,7 @@ angular
           center: 'title',
           right: 'today prev,next'
         },
-<<<<<<< HEAD
-=======
         timeFormat: "H:mm",
->>>>>>> development
         eventClick: self.alertOnEventClick,
         eventDrop: self.alertOnDrop,
         eventResize: self.alertOnResize,
