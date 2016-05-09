@@ -37,8 +37,7 @@ angular
       return socialCalPostService.postEventsToDB(eventTitle, eventDate, eventTime)
       .then(function(response) {
         if(response.status === 200){
-          console.log(eventDate);
-          var dateTime = moment(eventDate.replace("00:00:00", eventTime)).format('YYYY-MM-DDTHH:mm');
+          var dateTime = moment(eventDate.toString().replace("00:00:00", eventTime.toString())).format('YYYY-MM-DDTHH:mm');
           self.eventSources.push({
             title: eventTitle,
             start: dateTime
