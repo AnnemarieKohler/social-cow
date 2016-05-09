@@ -20,7 +20,7 @@ router.post('/sessions', function(req, res) {
       password: req.body.password
     }
   }).then(function(response) {
-    res.send("Signed in");
+    res.send(response);
   });
 });
 

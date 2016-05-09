@@ -37,11 +37,11 @@ angular
 
     self.signInUser = function(username, password) {
       return socialCalPostService.validateUserInDB(username, password).then(function(response) {
-        if(response.status === 200){
+        if(response.data.length === 0){
+          alert("NO");
+        } else {
           userPersistenceService.setCookieData(username);
           $window.location.reload();
-        } else {
-          console.log(response.status);
         }
       });
     };
