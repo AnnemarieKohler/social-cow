@@ -28,10 +28,9 @@ angular
       userPersistenceService.setCookieData(username);
       return socialCalPostService.postUserToDB(username, password).then(function(response) {
         if(response.status === 200){
-          console.log('YES IT WORKED PERFECTLY');
           $window.location.reload();
         } else {
-          console.log("Computer says no 🕵");
+          console.log(response.status);
         }
 
       })
