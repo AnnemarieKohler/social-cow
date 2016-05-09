@@ -29,6 +29,10 @@ angular
       return socialCalPostService.postUserToDB(username, password);
     };
 
+    self.signOutUser = function() {
+      userPersistenceService.clearCookieData();
+    };
+
     self.addEvent = function(eventTitle, eventDate, eventTime) {
       console.log("addEvent function");
       return socialCalPostService.postEventsToDB(eventTitle, eventDate, eventTime);

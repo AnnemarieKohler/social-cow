@@ -7,4 +7,4 @@ exports.config = {
     jasmine.getEnv().addReporter(new SpecReporter({displayStackTrace: 'all'}));
   },
   allScriptsTimeout: 600000
-}
+};

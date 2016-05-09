@@ -26,23 +26,34 @@
   <body>
     <section ng-controller="socialCalController as ctrl">
       <section>
-        <form>
-          <input id="new-user-username" ng-model="username" placeholder="Enter username">
-          <input type="password" id="new-user-password" ng-model="password" placeholder="Enter password">
-          <button id="new-user-submit" type="submit" ng-click="ctrl.signUpUser(username, password)">Sign Up</button>
-        </form>
-        Welcome, {{ user.username }}
-        {{ ctrl.user }}
+        <section ng-if="ctrl.user == undefined">
+          <form>
+            <input id="new-user-username" ng-model="username" placeholder="Enter username">
+            <input type="password" id="new-user-password" ng-model="password" placeholder="Enter password">
+            <button id="new-user-submit" type="submit" ng-click="ctrl.signUpUser(username, password)">Sign Up</button>
+          </form>
 
-      </section>
+          <form>
+            <input id="sign-in-username" ng-model="username" placeholder="Enter username">
+            <input type="password" id="sign-in-password" ng-model="password" placeholder="Enter password">
+            <button id="sign-in-submit" type="submit" ng-click="ctrl.signInUser(username, password)">Sign In</button>
+          </form>
+        </section>
 
-      <section>
-        <form id="new-event-form">
-          <input id="new-event-title" ng-model="eventTitle" placeholder="Event title">
-          <input type="date" id="new-event-date" ng-model="eventDate" placeholder="Event date">
-          <input id="new-event-time" ng-model="eventTime" placeholder="Event time">
-          <button id="new-event-submit" type="submit" ng-click="ctrl.addEvent(eventTitle, eventDate, eventTime)">Create</button>
-        </form>
+
+          <div ng-if="ctrl.user != undefined">
+            <p id="user-welcome">Welcome, {{ ctrl.user }}</p>
+            <button id="user-sign-out" type="submit" ng-click="ctrl.signOutUser()">Sign Out</button>
+            <section>
+              <form id="new-event-form">
+                <input id="new-event-title" ng-model="eventTitle" placeholder="Event title">
+                <input type="date" id="new-event-date" ng-model="eventDate" placeholder="Event date">
+                <input id="new-event-time" ng-model="eventTime" placeholder="Event time">
+                <button id="new-event-submit" type="submit" ng-click="ctrl.addEvent(eventTitle, eventDate, eventTime)">Create</button>
+              </form>
+            </section>
+          </div>
+
       </section>
 
       <section>
