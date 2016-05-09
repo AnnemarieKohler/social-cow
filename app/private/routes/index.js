@@ -13,6 +13,17 @@ router.get('/users/new', function(req, res, next) {
   res.render('users');
 });
 
+router.post('/sessions', function(req, res) {
+  models.Users.findAll({
+    where: {
+      username: req.body.username,
+      password: req.body.password
+    }
+  }).then(function(response) {
+    res.send("Signed in");
+  });
+});
+
 router.post('/users', function(req, res) {
   models.Users.findOrCreate({
     where: {

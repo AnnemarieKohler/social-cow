@@ -37,4 +37,20 @@ angular
         return self.status;
       });
     };
+
+    self.validateUserInDB = function(username, password) {
+      var formData = { username: username,
+                       password: password};
+      var url = '/sessions';
+      var data = JSON.stringify(formData);
+      var headers = { headers: { 'Content-Type': 'application/json' }};
+
+      return $http.post(url, data, headers).then(function(res) {
+        self.status = '';
+        return res;
+      }).catch(function() {
+        self.status = 'Failed';
+        return self.status;
+      });
+    };
   }]);
