@@ -1,7 +1,7 @@
 angular
   .module('socialCal')
-  .controller('socialCalController', ['$window', '$location', '$cookies', '$http', 'socialCalGetService', 'socialCalPostService', 'userPersistenceService',
-                                      function($window, $location, $cookies, $http, socialCalGetService, socialCalPostService, userPersistenceService) {
+  .controller('socialCalController', ['$window', '$cookies', '$http', 'socialCalGetService', 'socialCalPostService', 'userPersistenceService',
+                                      function($window, $cookies, $http, socialCalGetService, socialCalPostService, userPersistenceService) {
 
     var self = this;
 
