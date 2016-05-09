@@ -1,10 +1,19 @@
 body {
   padding: 20px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
 }
 
 a {
   color: #00B7FF;
+}
+
+pre {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+#attend {
+  text-align: center;
+  font-size: 20px;
 }
 
 .tgl{
@@ -22,9 +31,10 @@ a {
 .tgl + .tgl-btn {
   outline: 0;
   display: block;
-  width: 4em;
+  width: 7em;
   height: 2em;
   position: relative;
+  left:215px;
   cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -65,6 +75,7 @@ a {
   position: absolute;
   line-height: 2em;
   font-weight: bold;
+  font-size: 20px;
   color: #fff;
   position: absolute;
   top: 0;
