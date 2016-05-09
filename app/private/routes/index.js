@@ -13,6 +13,10 @@ router.get('/sessions/new', function(req, res, next) {
   res.render('sessions.html');
 });
 
+router.get('/users/new', function(req, res, next) {
+  res.render('new_user.html');
+});
+
 router.get('/events', function(req, res) {
   console.log("Did the get route");
   models.Events.findAll().then(function(events) {
@@ -30,13 +34,15 @@ router.post('/events', function(req, res) {
   });
 });
 
-router.post('/users', function(req, res) {
+router.post('/users', function(req, res, next) {
   models.Users.findOrCreate({
     where: {
       username: req.body.username,
       password: req.body.password
     }
   });
+  next();
+  res.redirect('index.html');
 });
 
 module.exports = router;

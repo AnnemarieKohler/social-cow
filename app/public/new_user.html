@@ -3,13 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>SocialCal</title>
-
     <link rel="stylesheet" href="../bower_components/fullcalendar/dist/fullcalendar.css"/>
     <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="../bower_components/moment/min/moment.min.js"></script>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-
 
     <script type="text/javascript" src="../bower_components/angular-ui-calendar/src/calendar.js"></script>
     <script type="text/javascript" src="../bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
@@ -22,22 +20,16 @@
   </head>
 
   <body>
-
     <section ng-controller="socialCalController as ctrl">
-      <p>Log into SocialCal:</p>
-      <form action="/" method="post">
-        <input id="username" ng-model="username" name="username" placeholder="Enter username">
-        <input id="password" ng-model="password" type="password" placeholder="Enter password">
-        <button id="new-session-submit" type="submit" ng-click="ctrl.signInUser(username, password)">Sign In</button>
-      </form>
-    </section>
 
-    <section>
-      <p>Don't have an account yet? Sign up!</p>
-      <form action="/users/new" method="post">
-        <button type="submit">Sign Up</button>
-      </form>
-    </section>
+      <section>
+        <p>Sign up:</p>
+        <form>
+          <input id="new-user-username" ng-model="username" placeholder="Enter username">
+          <input type="password" id="new-user-password" ng-model="password" placeholder="Enter password">
+          <button id="new-user-submit" type="submit" ng-click="ctrl.signUpUser(username, password)">Sign Up</button>
+        </form>
+      </section>
 
   </body>
 
