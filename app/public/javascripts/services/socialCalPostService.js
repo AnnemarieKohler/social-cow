@@ -13,8 +13,10 @@ angular
 
       return $http.post(url, data, headers).then(function(res) {
         self.status = '';
+        console.log("Service done");
         return res;
-      }).catch(function() {
+      }).catch(function(res) {
+        console.log(res);
         self.status = 'Failed';
         return self.status;
       });

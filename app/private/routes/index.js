@@ -37,6 +37,8 @@ router.post('/events', function(req, res) {
       date: req.body.date,
       time: req.body.time
     }
+  }).then(function(response) {
+    res.send('Done the post');
   });
 });
 

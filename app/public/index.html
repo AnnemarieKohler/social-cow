@@ -44,12 +44,12 @@
             <p id="user-welcome">Welcome, {{ ctrl.user }}</p>
             <button id="user-sign-out" type="submit" ng-click="ctrl.signOutUser()">Sign Out</button>
             <section>
-              <form id="new-event-form">
+
                 <input id="new-event-title" ng-model="eventTitle" placeholder="Event title">
                 <input type="date" id="new-event-date" ng-model="eventDate" placeholder="Event date">
                 <input id="new-event-time" ng-model="eventTime" placeholder="Event time">
                 <button id="new-event-submit" type="submit" ng-click="ctrl.addEvent(eventTitle, eventDate, eventTime)">Create</button>
-              </form>
+              
             </section>
           </div>
 

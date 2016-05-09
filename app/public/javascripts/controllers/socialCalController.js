@@ -1,7 +1,7 @@
 angular
   .module('socialCal')
-  .controller('socialCalController', ['$cookies', '$http', 'socialCalGetService', 'socialCalPostService', 'userPersistenceService',
-                                      function($cookies, $http, socialCalGetService, socialCalPostService, userPersistenceService) {
+  .controller('socialCalController', ['$location', '$cookies', '$http', 'socialCalGetService', 'socialCalPostService', 'userPersistenceService',
+                                      function($location, $cookies, $http, socialCalGetService, socialCalPostService, userPersistenceService) {
 
     var self = this;
 
@@ -34,8 +34,20 @@ angular
     };
 
     self.addEvent = function(eventTitle, eventDate, eventTime) {
-      console.log("addEvent function");
-      return socialCalPostService.postEventsToDB(eventTitle, eventDate, eventTime);
+      return socialCalPostService.postEventsToDB(eventTitle, eventDate, eventTime)
+      .then(function(response) {
+        if(response.status === 200){
+          console.log(eventDate);
+          var dateTime = moment(eventDate.replace("00:00:00", eventTime)).format('YYYY-MM-DDTHH:mm');
+          self.eventSources.push({
+            title: eventTitle,
+            start: dateTime
+          });
+        }
+      })
+      .catch(function(){
+        console.log("Failed");
+      });
     };
 
     self.alertOnEventClick = function(date, jsEvent, view) {
