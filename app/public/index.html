@@ -10,6 +10,7 @@
     <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.js"></script>
 
     <script type="text/javascript" src="bower_components/angular-ui-calendar/src/calendar.js"></script>
     <script type="text/javascript" src="bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
@@ -19,26 +20,40 @@
     <script type="text/javascript" src="/javascripts/controllers/socialCalController.js"></script>
     <script type="text/javascript" src="/javascripts/services/socialCalPostService.js"></script>
     <script type="text/javascript" src="/javascripts/services/socialCalGetService.js"></script>
+    <script type="text/javascript" src="/javascripts/factories/userPersistenceService.js"></script>
   </head>
 
   <body>
     <section ng-controller="socialCalController as ctrl">
       <section>
-        <form>
-          <input id="new-user-username" ng-model="username" placeholder="Enter username">
-          <input type="password" id="new-user-password" ng-model="password" placeholder="Enter password">
-          <button id="new-user-submit" type="submit" ng-click="ctrl.signUpUser(username, password)">Sign Up</button>
-        </form>
-        Welcome, {{ user.username }}
-      </section>
+        <section ng-if="ctrl.user == undefined">
+          <form>
+            <input id="new-user-username" ng-model="username" placeholder="Enter username">
+            <input type="password" id="new-user-password" ng-model="password" placeholder="Enter password">
+            <button id="new-user-submit" type="submit" ng-click="ctrl.signUpUser(username, password)">Sign Up</button>
+          </form>
 
-      <section>
-        <form id="new-event-form">
-          <input id="new-event-title" ng-model="eventTitle" placeholder="Event title">
-          <input type="date" id="new-event-date" ng-model="eventDate" placeholder="Event date">
-          <input id="new-event-time" ng-model="eventTime" placeholder="Event time">
-          <button id="new-event-submit" type="submit" ng-click="ctrl.addEvent(eventTitle, eventDate, eventTime)">Create</button>
-        </form>
+          <form>
+            <input id="sign-in-username" ng-model="username" placeholder="Enter username">
+            <input type="password" id="sign-in-password" ng-model="password" placeholder="Enter password">
+            <button id="sign-in-submit" type="submit" ng-click="ctrl.signInUser(username, password)">Sign In</button>
+          </form>
+        </section>
+
+
+          <div ng-if="ctrl.user != undefined">
+            <p id="user-welcome">Welcome, {{ ctrl.user }}</p>
+            <button id="user-sign-out" type="submit" ng-click="ctrl.signOutUser()">Sign Out</button>
+            <section>
+              <form id="new-event-form">
+                <input id="new-event-title" ng-model="eventTitle" placeholder="Event title">
+                <input type="date" id="new-event-date" ng-model="eventDate" placeholder="Event date">
+                <input id="new-event-time" ng-model="eventTime" placeholder="Event time">
+                <button id="new-event-submit" type="submit" ng-click="ctrl.addEvent(eventTitle, eventDate, eventTime)">Create</button>
+              </form>
+            </section>
+          </div>
+
       </section>
 
       <section>

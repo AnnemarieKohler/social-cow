@@ -4,7 +4,7 @@ describe('socialCalendar', function() {
     expect(browser.getTitle()).toEqual('SocialCal');
   });
 
-  it('creates a new event', function() {
+  xit('creates a new event', function() {
     // var millisecs = 300000;
     browser.get('/');
 

@@ -1,1 +1,1 @@
-angular.module('socialCal', ['ui.calendar']);
+angular.module('socialCal', ['ui.calendar', 'ngCookies']);

@@ -1,6 +1,6 @@
 describe('socialCalendar', function() {
 
-  fit('signs up a new user', function() {
+  it('signs up a new user', function() {
     // var millisecs = 300000;
     browser.get('/');
 
