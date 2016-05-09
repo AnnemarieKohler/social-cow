@@ -5,10 +5,7 @@ angular
 
     var self = this;
 
-    var set = userPersistenceService.setCookieData("Testuser");
     self.user = userPersistenceService.getCookieData();
-    console.log(set);
-    console.log(self.user);
 
     self.events = [];
     self.eventSources = [{
@@ -28,6 +25,7 @@ angular
     });
 
     self.signUpUser = function(username, password) {
+      userPersistenceService.setCookieData(username);
       return socialCalPostService.postUserToDB(username, password);
     };
 
