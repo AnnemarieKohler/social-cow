@@ -13,15 +13,17 @@ router.get('/users/new', function(req, res, next) {
   res.render('users');
 });
 
-router.post('/users', function(req, res, next) {
+router.post('/users', function(req, res) {
   models.Users.findOrCreate({
     where: {
       username: req.body.username,
       password: req.body.password
     }
+  }).then(function(response) {
+    res.send('Redirected');
+    res.redirect('/');
   });
-  next();
-  res.redirect('/');
+
 });
 
 router.get('/events', function(req, res) {

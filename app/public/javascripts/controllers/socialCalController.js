@@ -1,7 +1,7 @@
 angular
   .module('socialCal')
-  .controller('socialCalController', ['$location', '$cookies', '$http', 'socialCalGetService', 'socialCalPostService', 'userPersistenceService',
-                                      function($location, $cookies, $http, socialCalGetService, socialCalPostService, userPersistenceService) {
+  .controller('socialCalController', ['$window', '$location', '$cookies', '$http', 'socialCalGetService', 'socialCalPostService', 'userPersistenceService',
+                                      function($window, $location, $cookies, $http, socialCalGetService, socialCalPostService, userPersistenceService) {
 
     var self = this;
 
@@ -26,7 +26,15 @@ angular
 
     self.signUpUser = function(username, password) {
       userPersistenceService.setCookieData(username);
-      return socialCalPostService.postUserToDB(username, password);
+      return socialCalPostService.postUserToDB(username, password).then(function(response) {
+        if(response.status === 200){
+          console.log('YES IT WORKED PERFECTLY');
+          $window.location.reload();
+        } else {
+          console.log("Computer says no 🕵");
+        }
+
+      })
     };
 
     self.signOutUser = function() {

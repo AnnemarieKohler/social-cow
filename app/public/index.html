@@ -44,7 +44,7 @@
 
         <div ng-if="ctrl.user != undefined">
           <h1 id="user-welcome">Welcome, {{ ctrl.user }}</h1>
-          <button id="user-sign-out" type="submit" ng-click="ctrl.signOutUser()">Sign Out</button>
+          <a href="/" ng-click="ctrl.signOutUser()" target="_self"><button id="user-sign-out" type="submit">Sign Out</button></a>
           <section>
               <input id="new-event-title" ng-model="eventTitle" placeholder="Event title">
               <input type="date" id="new-event-date" ng-model="eventDate" placeholder="Event date">
