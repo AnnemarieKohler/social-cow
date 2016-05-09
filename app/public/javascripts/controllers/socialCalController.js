@@ -53,7 +53,6 @@ angular
     };
 
     self.alertOnEventClick = function(date, jsEvent, view) {
-      date.color = "green";
       alert.show('Clicked', date);
       $('#calendar').fullCalendar('updateEvent', date);
     };

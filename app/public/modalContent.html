@@ -14,7 +14,8 @@
   </p>
 
   <p>Attend?
-    <input type="checkbox" ng-model="ctrl.checkboxModel.value" ng-true-value="'YES'" ng-false-value="'NO'">
+    <input class='tgl tgl-flip' id='cb5' type='checkbox'>
+    <label class='tgl-btn' data-tg-off='Nope' data-tg-on='Yeah!' for='cb5'></label>
     <pre>Answer: {{ ctrl.checkboxModel.value }}</pre>
   </p>
 </div>
