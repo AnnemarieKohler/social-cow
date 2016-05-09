@@ -24,41 +24,37 @@
 
   <body>
     <section ng-controller="socialCalController as ctrl">
-      <section>
-        <section ng-if="ctrl.user == undefined">
+        <div ng-if="ctrl.user == undefined">
+
+
+          <h2>Log into SocialCal</h2>
           <form>
-            <input id="new-user-username" ng-model="username" placeholder="Enter username">
-            <input type="password" id="new-user-password" ng-model="password" placeholder="Enter password">
-            <button id="new-user-submit" type="submit" ng-click="ctrl.signUpUser(username, password)">Sign Up</button>
+            <input id="sign-in-username" ng-model="usernameSignIn" placeholder="Enter username">
+            <input type="password" id="sign-in-password" ng-model="passwordSignIn" placeholder="Enter password">
+            <button id="sign-in-submit" type="submit" ng-click="ctrl.signInUser(usernameSignIn, passwordSignIn)">Sign In</button>
           </form>
 
+          <h3>Don't have an account yet? Sign up!</h3>
           <form>
-            <input id="sign-in-username" ng-model="username" placeholder="Enter username">
-            <input type="password" id="sign-in-password" ng-model="password" placeholder="Enter password">
-            <button id="sign-in-submit" type="submit" ng-click="ctrl.signInUser(username, password)">Sign In</button>
+            <input id="new-user-username" ng-model="usernameSignUp" placeholder="Enter username">
+            <input type="password" id="new-user-password" ng-model="passwordSignUp" placeholder="Enter password">
+            <button id="new-user-submit" type="submit" ng-click="ctrl.signUpUser(usernameSignUp, passwordSignUp)">Sign Up</button>
           </form>
-        </section>
+        </div>
 
-
-          <div ng-if="ctrl.user != undefined">
-            <p id="user-welcome">Welcome, {{ ctrl.user }}</p>
-            <button id="user-sign-out" type="submit" ng-click="ctrl.signOutUser()">Sign Out</button>
-            <section>
-
-                <input id="new-event-title" ng-model="eventTitle" placeholder="Event title">
-                <input type="date" id="new-event-date" ng-model="eventDate" placeholder="Event date">
-                <input id="new-event-time" ng-model="eventTime" placeholder="Event time">
-                <button id="new-event-submit" type="submit" ng-click="ctrl.addEvent(eventTitle, eventDate, eventTime)">Create</button>
-              
-            </section>
-          </div>
-
-      </section>
-
-      <section>
-        <div id='calendar' ui-calendar='ctrl.uiConfig.calendar' ng-model='ctrl.eventSources'></div>
-      </section>
-
+        <div ng-if="ctrl.user != undefined">
+          <h1 id="user-welcome">Welcome, {{ ctrl.user }}</h1>
+          <button id="user-sign-out" type="submit" ng-click="ctrl.signOutUser()">Sign Out</button>
+          <section>
+              <input id="new-event-title" ng-model="eventTitle" placeholder="Event title">
+              <input type="date" id="new-event-date" ng-model="eventDate" placeholder="Event date">
+              <input id="new-event-time" ng-model="eventTime" placeholder="Event time">
+              <button id="new-event-submit" type="submit" ng-click="ctrl.addEvent(eventTitle, eventDate, eventTime)">Create</button>
+          </section>
+          <section>
+            <div id='calendar' ui-calendar='ctrl.uiConfig.calendar' ng-model='ctrl.eventSources'></div>
+          </section>
+        </div>
     </section>
   </body>
 
