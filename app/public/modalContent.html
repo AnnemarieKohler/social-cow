@@ -1,0 +1,23 @@
+<div class="modal-header">
+  <h3 class="modal-title">{{ ctrl.event.title }}</h3>
+</div>
+<div class="modal-body">
+  <p>Action:
+    <pre>{{ ctrl.action }}</pre>
+  </p>
+  <p>Event:
+    <pre>{{ ctrl.event.title }}</pre>
+    <pre>{{ ctrl.event.start }}</pre>
+  </p>
+  <p>Attendees:
+    <pre>** LIST OF ATTENDEES **</pre>
+  </p>
+
+  <p>Attend?
+    <input type="checkbox" ng-model="ctrl.checkboxModel.value" ng-true-value="'YES'" ng-false-value="'NO'">
+    <pre>Answer: {{ ctrl.checkboxModel.value }}</pre>
+  </p>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="$close()">OK</button>
+</div>

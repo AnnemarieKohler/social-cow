@@ -1,12 +1,15 @@
 angular
   .module('socialCal')
-  .controller('socialCalController', ['$location', '$cookies', '$http', 'socialCalGetService', 'socialCalPostService', 'userPersistenceService',
-                                      function($location, $cookies, $http, socialCalGetService, socialCalPostService, userPersistenceService) {
+  .controller('socialCalController', ['alert','$location', '$cookies', '$http', 'socialCalGetService', 'socialCalPostService', 'userPersistenceService',
+                                      function(alert, $location, $cookies, $http, socialCalGetService, socialCalPostService, userPersistenceService) {
 
     var self = this;
 
     self.user = userPersistenceService.getCookieData();
 
+    self.checkboxModel = {
+      value1 : "YES"
+    };
     self.events = [];
     self.eventSources = [{
       title: "PUB PLEASE",
@@ -51,6 +54,7 @@ angular
 
     self.alertOnEventClick = function(date, jsEvent, view) {
       date.color = "green";
+      alert.show('Clicked', date);
       $('#calendar').fullCalendar('updateEvent', date);
     };
 

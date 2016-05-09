@@ -10,6 +10,10 @@
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-animate.js"></script>
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
 
     <script type="text/javascript" src="bower_components/angular-ui-calendar/src/calendar.js"></script>
     <script type="text/javascript" src="bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
@@ -20,6 +24,8 @@
     <script type="text/javascript" src="/javascripts/services/socialCalPostService.js"></script>
     <script type="text/javascript" src="/javascripts/services/socialCalGetService.js"></script>
     <script type="text/javascript" src="/javascripts/factories/userPersistenceService.js"></script>
+    <script type="text/javascript" src="/javascripts/factories/alert.js"></script>
+
   </head>
 
   <body>
@@ -49,7 +55,7 @@
                 <input type="date" id="new-event-date" ng-model="eventDate" placeholder="Event date">
                 <input id="new-event-time" ng-model="eventTime" placeholder="Event time">
                 <button id="new-event-submit" type="submit" ng-click="ctrl.addEvent(eventTitle, eventDate, eventTime)">Create</button>
-              
+
             </section>
           </div>
 
