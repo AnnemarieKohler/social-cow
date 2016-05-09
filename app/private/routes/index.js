@@ -5,13 +5,26 @@ var models = require('../server/models/index');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+router.get('/sessions/new', function(req, res, next) {
+  res.render('sessions');
+});
+
+router.get('/users/new', function(req, res, next) {
+  res.render('users');
+});
+
+router.post('/users', function(req, res, next) {
+  models.Users.findOrCreate({
+    where: {
+      username: req.body.username,
+      password: req.body.password
+    }
+  });
+  next();
+  res.redirect('/');
 });
 
 router.get('/events', function(req, res) {
-  console.log("Did the get route");
   models.Events.findAll().then(function(events) {
     res.send(events);
   });
@@ -26,5 +39,7 @@ router.post('/events', function(req, res) {
     }
   });
 });
+
+
 
 module.exports = router;

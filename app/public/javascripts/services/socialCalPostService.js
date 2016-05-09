@@ -4,7 +4,6 @@ angular
     var self = this;
 
     self.postEventsToDB = function(eventTitle, eventDate, eventTime) {
-      console.log("postEventsToDB");
       var formData = { title: eventTitle,
                        date: eventDate,
                        time: eventTime };
@@ -19,6 +18,21 @@ angular
         self.status = 'Failed';
         return self.status;
       });
+    };
 
+    self.postUserToDB = function(username, password) {
+      var formData = { username: username,
+                       password: password};
+      var url = '/users';
+      var data = JSON.stringify(formData);
+      var headers = { headers: { 'Content-Type': 'application/json' }};
+
+      return $http.post(url, data, headers).then(function(res) {
+        self.status = '';
+        return res;
+      }).catch(function() {
+        self.status = 'Failed';
+        return self.status;
+      });
     };
   }]);
