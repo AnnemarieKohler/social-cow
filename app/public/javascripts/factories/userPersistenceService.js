@@ -17,6 +17,6 @@ angular
 				username = "";
 				$cookies.remove("username");
 			}
-		}
+		};
 	}
 ]);

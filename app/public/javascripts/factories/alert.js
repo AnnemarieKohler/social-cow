@@ -1,6 +1,6 @@
 angular
   .module('socialCal')
-  .factory('alert', ['$uibModal', function($uibModal) {
+  .factory('alert', ['$uibModal','socialCalPostService', function($uibModal, socialCalPostService) {
 
     function show(action, singleEvent) {
       return $uibModal.open({
@@ -9,7 +9,7 @@ angular
           var self = this;
           self.action = action;
           self.event = singleEvent;
-          console.log(singleEvent);
+          self.service = socialCalPostService;
         },
         controllerAs: 'ctrl'
       });

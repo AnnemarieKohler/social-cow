@@ -7,9 +7,6 @@ angular
 
     self.user = userPersistenceService.getCookieData();
 
-    self.checkboxModel = {
-      value1 : "YES"
-    };
     self.events = [];
     self.eventSources = [{
       title: "PUB PLEASE",
@@ -21,6 +18,7 @@ angular
       return events.map(function(singleEvent) {
         var dateTime = moment(singleEvent.date.replace("00:00:00", singleEvent.time)).format('YYYY-MM-DDTHH:mm');
         return self.eventSources.push({
+          id: singleEvent.id,
           title: singleEvent.title,
           start: dateTime
         });
@@ -53,6 +51,7 @@ angular
     };
 
     self.alertOnEventClick = function(date, jsEvent, view) {
+      console.log(date);
       alert.show('Clicked', date);
       $('#calendar').fullCalendar('updateEvent', date);
     };

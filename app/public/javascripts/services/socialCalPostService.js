@@ -37,4 +37,8 @@ angular
         return self.status;
       });
     };
+
+    self.updateAttendees = function() {
+      // IF ATTENDING BUTTON IS TRUE, PUSH CURRENT USER'S ID TO EVENT.ATTENDEES
+    };
   }]);

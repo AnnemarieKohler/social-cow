@@ -17,10 +17,9 @@
   <p id="attend">Attend?
     <input class='tgl tgl-flip' id='cb5' type='checkbox'>
     <label class='tgl-btn' data-tg-off="Not going" data-tg-on="Going!" for='cb5'></label>
-    <pre>Answer: {{ ctrl.checkboxModel.value }}</pre>
   </p>
 </div>
 
 <div class="modal-footer">
-  <button class="btn btn-primary" ng-click="$close()">OK</button>
+  <button class="btn btn-primary" ng-click="ctrl.service.updateAttendees()">OK</button>
 </div>
