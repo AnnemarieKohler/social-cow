@@ -1,7 +1,11 @@
 angular
   .module('socialCal')
-  .controller('socialCalController', ['$http', 'socialCalGetService', 'socialCalPostService', function($http, socialCalGetService, socialCalPostService) {
+  .controller('socialCalController', ['$cookies', '$http', 'socialCalGetService', 'socialCalPostService',
+                                      function($cookies, $http, socialCalGetService, socialCalPostService) {
+
     var self = this;
+
+    $cookies.put("username", "test");
 
     self.events = [];
     self.eventSources = [{
