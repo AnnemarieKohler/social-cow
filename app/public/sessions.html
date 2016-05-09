@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="socialCal">
+  <head>
+    <meta charset="utf-8">
+    <title>SocialCal</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script type="text/javascript" src="/javascripts/app.js"></script>
+    <script type="text/javascript" src="/javascripts/controllers/socialCalController.js"></script>
+    <script type="text/javascript" src="/javascripts/services/socialCalPostService.js"></script>
+    <script type="text/javascript" src="/javascripts/services/socialCalGetService.js"></script>
+  </head>
+  <body>
+
+    <section ng-controller="socialCalController as ctrl">
+      <p>Log into SocialCal:</p>
+      <form class="" action="/" method="post">
+        <input id="username" ng-model="username" name="username" placeholder="Enter username">
+        <input id="password" ng-model="password" type="password" placeholder="Enter password">
+        <button id="new-session-submit" type="submit" ng-click="ctrl.signInUser(username, password)">Sign In</button>
+      </form>
+    </section>
+
+    <section>
+      <p>Don't have an account yet? Sign up!</p>
+      <form class="" action="/users/new" method="post">
+        <button type="submit">Sign Up</button>
+      </form>
+    </section>
+
+  </body>
+</html>

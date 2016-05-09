@@ -5,9 +5,12 @@ var models = require('../server/models/index');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index.html');
+});
+
+router.get('/sessions/new', function(req, res, next) {
+  res.render('sessions.html');
 });
 
 router.get('/events', function(req, res) {
