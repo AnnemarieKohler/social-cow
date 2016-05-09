@@ -24,8 +24,8 @@
   <body>
 
     <section ng-controller="socialCalController as ctrl">
-      <p>Log into SocialCal:</p>
-      <form action="/" method="post">
+      <h2>Log into SocialCal:</h2>
+      <form action="/sessions" method="post">
         <input id="username" ng-model="username" name="username" placeholder="Enter username">
         <input id="password" ng-model="password" type="password" placeholder="Enter password">
         <button id="new-session-submit" type="submit" ng-click="ctrl.signInUser(username, password)">Sign In</button>
@@ -33,7 +33,7 @@
     </section>
 
     <section>
-      <p>Don't have an account yet? Sign up!</p>
+      <h3>Don't have an account yet? Sign up!</h3>
       <form action="/users/new" method="post">
         <button type="submit">Sign Up</button>
       </form>
