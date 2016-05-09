@@ -20,6 +20,7 @@
     <script type="text/javascript" src="/javascripts/controllers/socialCalController.js"></script>
     <script type="text/javascript" src="/javascripts/services/socialCalPostService.js"></script>
     <script type="text/javascript" src="/javascripts/services/socialCalGetService.js"></script>
+    <script type="text/javascript" src="/javascripts/factories/userPersistenceService.js"></script>
   </head>
 
   <body>
@@ -31,6 +32,8 @@
           <button id="new-user-submit" type="submit" ng-click="ctrl.signUpUser(username, password)">Sign Up</button>
         </form>
         Welcome, {{ user.username }}
+        {{ ctrl.user }}
+
       </section>
 
       <section>

@@ -1,11 +1,14 @@
 angular
   .module('socialCal')
-  .controller('socialCalController', ['$cookies', '$http', 'socialCalGetService', 'socialCalPostService',
-                                      function($cookies, $http, socialCalGetService, socialCalPostService) {
+  .controller('socialCalController', ['$cookies', '$http', 'socialCalGetService', 'socialCalPostService', 'userPersistenceService',
+                                      function($cookies, $http, socialCalGetService, socialCalPostService, userPersistenceService) {
 
     var self = this;
 
-    $cookies.put("username", "test");
+    var set = userPersistenceService.setCookieData("Testuser");
+    self.user = userPersistenceService.getCookieData();
+    console.log(set);
+    console.log(self.user);
 
     self.events = [];
     self.eventSources = [{
@@ -17,7 +20,6 @@ angular
     socialCalGetService.getEventsFromDB().then(function(events) {
       return events.map(function(singleEvent) {
         var dateTime = moment(singleEvent.date.replace("00:00:00", singleEvent.time)).format('YYYY-MM-DDTHH:mm');
-        console.log("DATETIME " + dateTime);
         return self.eventSources.push({
           title: singleEvent.title,
           start: dateTime
