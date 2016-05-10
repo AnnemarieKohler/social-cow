@@ -1,7 +1,6 @@
 angular
   .module('socialCal')
-  .controller('socialCalController', ['$window', '$cookies', '$http', 'socialCalGetService', 'socialCalPostService', 'userPersistenceService',
-                                      function($window, $cookies, $http, socialCalGetService, socialCalPostService, userPersistenceService) {
+  .controller('socialCalController', ['$window', '$cookies', '$http', 'socialCalGetService', 'socialCalPostService', 'userPersistenceService', function($window, $cookies, $http, socialCalGetService, socialCalPostService, userPersistenceService) {
 
     var self = this;
 
@@ -16,7 +15,8 @@ angular
 
     socialCalGetService.getEventsFromDB().then(function(events) {
       return events.map(function(singleEvent) {
-        var dateTime = moment(singleEvent.date.replace("00:00:00", singleEvent.time)).format('YYYY-MM-DDTHH:mm');
+        var correctDateFormat = moment(singleEvent.date.replace("00:00:00", singleEvent.time)).format('YYYY-MM-DDTHH:mm');
+        var dateTime = moment(correctDateFormat).subtract(1, 'hours');
         return self.eventSources.push({
           title: singleEvent.title,
           start: dateTime
@@ -54,7 +54,9 @@ angular
       return socialCalPostService.postEventsToDB(eventTitle, eventDate, eventTime)
       .then(function(response) {
         if(response.status === 200){
-          var dateTime = moment(eventDate.toString().replace("00:00:00", eventTime.toString())).format('YYYY-MM-DDTHH:mm');
+          var dateArray = eventTime.toString().split(" ");
+          var correctTimeFormat = dateArray[4];
+          var dateTime = moment(eventDate.toString().replace("00:00:00", correctTimeFormat)).format('YYYY-MM-DDTHH:mm');
           self.eventSources.push({
             title: eventTitle,
             start: dateTime
