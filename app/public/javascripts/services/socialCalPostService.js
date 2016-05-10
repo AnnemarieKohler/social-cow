@@ -4,9 +4,12 @@ angular
     var self = this;
 
     self.postEventsToDB = function(eventTitle, eventDate, eventTime) {
+      var dateArray = eventTime.toString().split(" ");
+      var correctTimeFormat = dateArray[4];
+      var correctDate = moment(eventDate).add(1, 'days')._d;
       var formData = { title: eventTitle,
-                       date: eventDate,
-                       time: eventTime };
+                       date: correctDate,
+                       time: correctTimeFormat };
       var url = '/events';
       var data = JSON.stringify(formData);
       var headers = { headers: { 'Content-Type': 'application/json' }};
