@@ -1,0 +1,26 @@
+<div class="modal-header">
+  <h3 class="modal-title">{{ ctrl.event.title }}</h3>
+</div>
+
+<div class="modal-body">
+  <p>Arranged by:
+    <pre>** User **</pre>
+  </p>
+  <p>Date:
+    <pre>{{ ctrl.event.start }}</pre>  </p>
+  <p>Attendees:
+    <pre>** List of attendees **</pre>
+  </p>
+  <p>Location:
+    <pre>** Location **</pre>  </p>
+  <p>
+  <p id="attend">Attend?
+    <input class='tgl tgl-flip' id='cb5' type='checkbox'>
+    <label class='tgl-btn' data-tg-off="Not going" data-tg-on="Going!" for='cb5'></label>
+    <pre>Answer: {{ ctrl.checkboxModel.value }}</pre>
+  </p>
+</div>
+
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="$close()">OK</button>
+</div>

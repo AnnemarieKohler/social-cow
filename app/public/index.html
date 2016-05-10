@@ -4,22 +4,33 @@
   <head>
     <meta charset="utf-8">
     <title>SocialCal</title>
-    <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css"/>
+
+
     <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-animate.js"></script>
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
 
     <script type="text/javascript" src="bower_components/angular-ui-calendar/src/calendar.js"></script>
     <script type="text/javascript" src="bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
     <script type="text/javascript" src="bower_components/fullcalendar/dist/gcal.js"></script>
+    <script src="bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js"></script>
+    <link href="bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="stylesheets/style.css"/>
+    <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css"/>
 
     <script type="text/javascript" src="/javascripts/app.js"></script>
     <script type="text/javascript" src="/javascripts/controllers/socialCalController.js"></script>
     <script type="text/javascript" src="/javascripts/services/socialCalPostService.js"></script>
     <script type="text/javascript" src="/javascripts/services/socialCalGetService.js"></script>
     <script type="text/javascript" src="/javascripts/factories/userPersistenceService.js"></script>
+    <script type="text/javascript" src="/javascripts/factories/alert.js"></script>
+
   </head>
 
   <body>
@@ -40,6 +51,7 @@
             <input type="password" id="new-user-password" ng-model="passwordSignUp" placeholder="Enter password">
             <button id="new-user-submit" type="submit" ng-click="ctrl.signUpUser(usernameSignUp, passwordSignUp)">Sign Up</button>
           </form>
+
         </div>
 
         <div ng-if="ctrl.user != undefined">
@@ -55,6 +67,7 @@
             <div id='calendar' ui-calendar='ctrl.uiConfig.calendar' ng-model='ctrl.eventSources'></div>
           </section>
         </div>
+
     </section>
   </body>
 
