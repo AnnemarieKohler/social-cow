@@ -6,7 +6,7 @@ describe('socialCalController', function() {
   var title = 'title';
   var date = '13/05/2016';
   var time = '19:00';
-  var promise;
+  var resolvingPromise;
 
   beforeEach(inject(function($controller, _socialCalPostService_, _$httpBackend_, _$cookies_) {
     ctrl = $controller('socialCalController');
