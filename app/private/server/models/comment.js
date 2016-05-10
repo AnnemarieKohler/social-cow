@@ -7,8 +7,9 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     classMethods: {
       associate: function(models) {
-        Comment.belongsTo(models.User, { as: 'Author' });
-        Comment.belongsTo(models.Event, { foreignKey: 'EventsId' });      }
+        Comment.belongsTo(models.User);
+        Comment.belongsTo(models.Event);
+      }
     }
   });
   return Comment;

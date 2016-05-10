@@ -56,18 +56,21 @@ router.post('/events', function(req, res) {
 });
 
 router.get('/comments', function(req, res) {
-  models.Comment.findAll().then(function(events) {
-    res.send(comment);
+  models.Comment.findAll({
+    where: {
+      EventId: req.query.eventid
+    }
+  }).then(function(response) {
+    res.send(response);
   });
 });
 
 router.post('/comments', function(req, res) {
-  models.Comment.findOrCreate({
-    where: {
+  console.log(req, req.body);
+  models.Comment.create({
       body: req.body.body,
-      UserId: models.User.id,
-      EventId: models.Event.id
-    }
+      UserId: req.body.userid,
+      EventId: req.body.eventid
   }).then(function(response) {
     res.send('Done the comment');
   });
