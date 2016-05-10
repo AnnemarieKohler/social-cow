@@ -18,7 +18,7 @@ angular
 
     function isAttending(username, singleEvent) {
       var attendees = singleEvent.attendees;
-      console.log(singleEvent.attendees);
+      console.log("poop= " + singleEvent.currentUserAttending);
       return false;
     }
 

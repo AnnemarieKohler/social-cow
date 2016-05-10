@@ -19,7 +19,7 @@
       <label class='tgl-btn' data-tg-off="Not going" data-tg-on="Going!" for='cb5'></label>
   </p>
   <p ng-if="ctrl.attending === false" id="attend">Attend?
-      <input class='tgl tgl-flip' id='cb5' type='checkbox'>
+      <input class='tgl tgl-flip' id='cb5' type='checkbox' ng-model="ctrl.attendingButton.value">
       <label class='tgl-btn' data-tg-off="Not going" data-tg-on="Going!" for='cb5'></label>
   </p>
 </div>
