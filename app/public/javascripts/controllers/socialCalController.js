@@ -21,7 +21,8 @@ angular
         return self.eventSources.push({
           id: singleEvent.id,
           title: singleEvent.title,
-          start: dateTime
+          start: dateTime,
+          attendees: singleEvent.attendees
         });
       });
     });

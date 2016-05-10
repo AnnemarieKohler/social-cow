@@ -57,18 +57,35 @@ router.post('/events', function(req, res) {
 
 router.post('/events/update', function(req, res) {
   var name = req.body.attendee;
-  models.Users.findOne({where: {username: name }}).then(function(r) {
-    models.Events.update({
-      attendees: [r.id]
-    },
-    {
-      where: { id: 2 }
-    }).then(function(response) {
-      res.send('Done attendee update');
+  models.Users.findOne({where: {username: name }})
+  .then(function(response) {
+    updateAttendeesArray(response.id)
+    .then(function(array) {
+      models.Events.update({
+        attendees: array
+      },
+      {
+        where: { id: 2 }
+      }).then(function(response) {
+        res.send("Done attendee update");
+      });
     });
   });
 });
 
+function updateAttendeesArray(id) {
+    return models.Events.findById(2).then(function(response) {
+      var attendeeArray = response.attendees;
+      var indexOfId = attendeeArray.indexOf(id);
+      if (indexOfId != -1){
+        attendeeArray.splice(indexOfId,1);
+        return attendeeArray;
+      } else {
+        attendeeArray.push(id);
+        return attendeeArray;
+      }
+    });
+}
 
 
 

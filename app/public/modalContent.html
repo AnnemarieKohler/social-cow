@@ -14,12 +14,16 @@
   <p>Location:
     <pre>** Location **</pre>  </p>
   <p>
-  <p id="attend">Attend?
-    <input class='tgl tgl-flip' id='cb5' type='checkbox'>
-    <label class='tgl-btn' data-tg-off="Not going" data-tg-on="Going!" for='cb5'></label>
+  <p ng-if="ctrl.attending" id="attend">Attend?
+      <input class='tgl tgl-flip' id='cb5' type='checkbox' checked>
+      <label class='tgl-btn' data-tg-off="Not going" data-tg-on="Going!" for='cb5'></label>
+  </p>
+  <p ng-if="ctrl.attending === false" id="attend">Attend?
+      <input class='tgl tgl-flip' id='cb5' type='checkbox'>
+      <label class='tgl-btn' data-tg-off="Not going" data-tg-on="Going!" for='cb5'></label>
   </p>
 </div>
 
 <div class="modal-footer">
-  <button class="btn btn-primary" ng-click="ctrl.service.updateAttendees()">OK</button>
+  <button class="btn btn-primary" ng-click="$close(); ctrl.service.updateAttendees()">OK</button>
 </div>
