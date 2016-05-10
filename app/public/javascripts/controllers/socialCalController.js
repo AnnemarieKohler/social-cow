@@ -1,7 +1,7 @@
 angular
   .module('socialCal')
-  .controller('socialCalController', ['alert','$location', '$cookies', '$http', 'socialCalGetService', 'socialCalPostService', 'userPersistenceService',
-                                      function(alert, $location, $cookies, $http, socialCalGetService, socialCalPostService, userPersistenceService) {
+  .controller('socialCalController', ['alert', '$window', '$cookies', '$http', 'socialCalGetService', 'socialCalPostService', 'userPersistenceService',
+                                      function(alert, $window, $cookies, $http, socialCalGetService, socialCalPostService, userPersistenceService) {
 
     var self = this;
 
@@ -16,7 +16,8 @@ angular
 
     socialCalGetService.getEventsFromDB().then(function(events) {
       return events.map(function(singleEvent) {
-        var dateTime = moment(singleEvent.date.replace("00:00:00", singleEvent.time)).format('YYYY-MM-DDTHH:mm');
+        var correctDateFormat = moment(singleEvent.date.replace("00:00:00", singleEvent.time)).format('YYYY-MM-DDTHH:mm');
+        var dateTime = moment(correctDateFormat).subtract(1, 'hours');
         return self.eventSources.push({
           id: singleEvent.id,
           title: singleEvent.title,
@@ -27,7 +28,24 @@ angular
 
     self.signUpUser = function(username, password) {
       userPersistenceService.setCookieData(username);
-      return socialCalPostService.postUserToDB(username, password);
+      return socialCalPostService.postUserToDB(username, password).then(function(response) {
+        if(response.status === 200){
+          $window.location.reload();
+        } else {
+          console.log(response.status);
+        }
+      });
+    };
+
+    self.signInUser = function(username, password) {
+      return socialCalPostService.validateUserInDB(username, password).then(function(response) {
+        if(response.data.length === 0){
+          alert("NO");
+        } else {
+          userPersistenceService.setCookieData(username);
+          $window.location.reload();
+        }
+      });
     };
 
     self.signOutUser = function() {
@@ -38,7 +56,9 @@ angular
       return socialCalPostService.postEventsToDB(eventTitle, eventDate, eventTime)
       .then(function(response) {
         if(response.status === 200){
-          var dateTime = moment(eventDate.toString().replace("00:00:00", eventTime.toString())).format('YYYY-MM-DDTHH:mm');
+          var dateArray = eventTime.toString().split(" ");
+          var correctTimeFormat = dateArray[4];
+          var dateTime = moment(eventDate.toString().replace("00:00:00", correctTimeFormat)).format('YYYY-MM-DDTHH:mm');
           self.eventSources.push({
             title: eventTitle,
             start: dateTime

@@ -3,7 +3,8 @@ module.exports = function(sequelize, DataTypes) {
   var Events = sequelize.define('Events', {
     title: DataTypes.STRING,
     date: DataTypes.DATEONLY,
-    time: DataTypes.TIME
+    time: DataTypes.TIME,
+    attendees: DataTypes.ARRAY(DataTypes.INTEGER)
   }, {
     classMethods: {
       associate: function(models) {

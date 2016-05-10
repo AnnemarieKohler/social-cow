@@ -13,15 +13,28 @@ router.get('/users/new', function(req, res, next) {
   res.render('users');
 });
 
-router.post('/users', function(req, res, next) {
+router.post('/sessions', function(req, res) {
+  models.Users.findAll({
+    where: {
+      username: req.body.username,
+      password: req.body.password
+    }
+  }).then(function(response) {
+    res.send(response);
+  });
+});
+
+router.post('/users', function(req, res) {
   models.Users.findOrCreate({
     where: {
       username: req.body.username,
       password: req.body.password
     }
+  }).then(function(response) {
+    res.send('Redirected');
+    res.redirect('/');
   });
-  next();
-  res.redirect('/');
+
 });
 
 router.get('/events', function(req, res) {
@@ -41,6 +54,21 @@ router.post('/events', function(req, res) {
     res.send('Done the post');
   });
 });
+
+router.post('/events/update', function(req, res) {
+  var name = req.body.attendee;
+  models.Users.findOne({where: {username: name }}).then(function(r) {
+    models.Events.update({
+      attendees: [r.id]
+    },
+    {
+      where: { id: 2 }
+    }).then(function(response) {
+      res.send('Done attendee update');
+    });
+  });
+});
+
 
 
 
