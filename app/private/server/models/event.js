@@ -1,15 +1,15 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) {
-  var Events = sequelize.define('Events', {
+  var Event = sequelize.define('Event', {
     title: DataTypes.STRING,
     date: DataTypes.DATEONLY,
     time: DataTypes.TIME
   }, {
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+        Event.hasMany(models.Comment);
       }
     }
   });
-  return Events;
+  return Event;
 };

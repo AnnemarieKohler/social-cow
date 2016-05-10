@@ -14,7 +14,7 @@ router.get('/users/new', function(req, res, next) {
 });
 
 router.post('/sessions', function(req, res) {
-  models.Users.findAll({
+  models.User.findAll({
     where: {
       username: req.body.username,
       password: req.body.password
@@ -25,7 +25,7 @@ router.post('/sessions', function(req, res) {
 });
 
 router.post('/users', function(req, res) {
-  models.Users.findOrCreate({
+  models.User.findOrCreate({
     where: {
       username: req.body.username,
       password: req.body.password
@@ -38,13 +38,13 @@ router.post('/users', function(req, res) {
 });
 
 router.get('/events', function(req, res) {
-  models.Events.findAll().then(function(events) {
+  models.Event.findAll().then(function(events) {
     res.send(events);
   });
 });
 
 router.post('/events', function(req, res) {
-  models.Events.findOrCreate({
+  models.Event.findOrCreate({
     where: {
       title: req.body.title,
       date: req.body.date,
@@ -55,6 +55,22 @@ router.post('/events', function(req, res) {
   });
 });
 
+router.get('/comments', function(req, res) {
+  models.Comment.findAll().then(function(events) {
+    res.send(comment);
+  });
+});
 
+router.post('/comments', function(req, res) {
+  models.Comment.findOrCreate({
+    where: {
+      body: req.body.body,
+      UserId: models.User.id,
+      EventId: models.Event.id
+    }
+  }).then(function(response) {
+    res.send('Done the comment');
+  });
+});
 
 module.exports = router;
