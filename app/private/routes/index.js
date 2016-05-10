@@ -66,7 +66,6 @@ router.get('/comments', function(req, res) {
 });
 
 router.post('/comments', function(req, res) {
-  console.log(req, req.body);
   models.Comment.create({
       body: req.body.body,
       UserId: req.body.userid,
