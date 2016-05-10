@@ -1,16 +1,17 @@
 describe('socialCalController', function() {
-  beforeEach(module('socialCal'));
+  beforeEach(module('socialCal', ['ngCookies']));
 
-  var ctrl, $httpBackend, socialCalPostService;
+  var ctrl, $httpBackend, socialCalPostService, $cookies;
 
   var title = 'title';
   var date = '13/05/2016';
   var time = '19:00';
 
-  beforeEach(inject(function($controller, _socialCalPostService_, _$httpBackend_) {
-    ctrl = $controller('socialCalController');
+  beforeEach(inject(function($controller, _socialCalPostService_, _$httpBackend_, _$cookies_) {
+    ctrl = $controller('socialCalController', ['ngCookies']);
     socialCalPostService = _socialCalPostService_;
     $httpBackend = _$httpBackend_;
+    $cookies = _$cookies;
   }));
 
   describe('#addEvent', function() {
