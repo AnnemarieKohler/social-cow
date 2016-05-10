@@ -15,8 +15,8 @@ describe('socialCalendar', function() {
     $('#new-event-time').sendKeys("19:00");
     $('#new-event-submit').click();
     browser.get('/');
-    var el = element(by.css('#calendar'));
-    el.getText().then(function(text) {
+    var calendar = element(by.css('#calendar'));
+    calendar.getText().then(function(text) {
       expect(text).toContain('19:00 New Event');
     });
   });
