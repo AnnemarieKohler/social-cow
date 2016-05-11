@@ -41,24 +41,35 @@
 
   <body>
     <section ng-controller="socialCalController as ctrl">
-        <div ng-if="ctrl.user.username == undefined">
+      <section ng-if="ctrl.user.username == undefined">
+        <h2>Log into SocialCal</h2>
 
+        <form class="form-inline">
+          <section class="form-group">
+            <label class="sr-only" for="sign-in-username">Username</label>
+            <input class="form-control" id="sign-in-username" ng-model="usernameSignIn" placeholder="Enter username">
+          </section>
+          <section class="form-group">
+            <label class="sr-only" for="sign-in-password">Password</label>
+            <input class="form-control" type="password" id="sign-in-password" ng-model="passwordSignIn" placeholder="Enter password">
+          </section>
+          <button class="btn btn-default" id="sign-in-submit" type="submit" ng-click="ctrl.signInUser(usernameSignIn, passwordSignIn)">Sign In</button>
+        </form>
 
-          <h2>Log into SocialCal</h2>
-          <form>
-            <input id="sign-in-username" ng-model="usernameSignIn" placeholder="Enter username">
-            <input type="password" id="sign-in-password" ng-model="passwordSignIn" placeholder="Enter password">
-            <button id="sign-in-submit" type="submit" ng-click="ctrl.signInUser(usernameSignIn, passwordSignIn)">Sign In</button>
-          </form>
+        <h3>Don't have an account yet? Sign up!</h3>
 
-          <h3>Don't have an account yet? Sign up!</h3>
-          <form>
-            <input id="new-user-username" ng-model="usernameSignUp" placeholder="Enter username">
-            <input type="password" id="new-user-password" ng-model="passwordSignUp" placeholder="Enter password">
-            <button id="new-user-submit" type="submit" ng-click="ctrl.signUpUser(usernameSignUp, passwordSignUp)">Sign Up</button>
-          </form>
+        <form class="form-inline">
+          <section class="form-group">
+            <label class="sr-only" for="new-user-username">Username</label>
+            <input class="form-control" id="new-user-username" ng-model="usernameSignUp" placeholder="Enter username">
+          </section>
+          <section class="form-group">
+            <input class="form-control" type="password" id="new-user-password" ng-model="passwordSignUp" placeholder="Enter password">
+          </section>
+          <button class="btn btn-default" id="new-user-submit" type="submit" ng-click="ctrl.signUpUser(usernameSignUp, passwordSignUp)">Sign Up</button>
+        </form>
 
-        </div>
+      </section>
 
         <div ng-if="ctrl.user.username != undefined">
 
