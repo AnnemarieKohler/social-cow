@@ -5,6 +5,8 @@ angular
 
     var self = this;
     self.commentsArray = [];
+    self.commentsUserArray = [];
+    self.usersAndComments = [];
 
     self.user = userPersistenceService.getCookieData();
 
@@ -41,6 +43,30 @@ angular
     self.postComment = function(eventId, text) {
       return socialCalPostService.postCommentToDB(self.user.userId, eventId, text).then(function(response) {
         console.log("Posted to backend");
+      });
+    };
+
+    self.getCommentsUser = function(commentsArray) {
+      self.commentsUserArray = [];
+      commentsArray.map(function(comment) {
+        return callService(comment.UserId).then(function(users) {
+          users.map(function(singleUser) {
+            self.commentsUserArray.push(singleUser.username);
+          });
+        });
+      });
+    };
+
+    var callService = function(userId) {
+      return socialCalGetService.getCommentsUserFromDB(userId);
+    };
+
+    var combineUserCommentData = function() {
+      self.commentsUserArray.map(function(value, index) {
+        return self.usersAndComments.push({
+          username: value,
+          comment: self.commentsArray[index]
+        });
       });
     };
 
@@ -105,12 +131,19 @@ angular
     self.alertOnEventClick = function(singleEvent, jsEvent, view) {
       self.getComments(singleEvent.EventId);
       setTimeout(function() {
+        self.getCommentsUser(self.commentsArray);
+      } , 200);
+      setTimeout(function() {
+        combineUserCommentData();
+      } , 300);
+      setTimeout(function() {
         showCalendar(singleEvent);
-      } , 500);
+      } , 400);
     };
 
     function showCalendar(singleEvent) {
-      alert.show('Clicked', singleEvent, self.commentsArray);
+      alert.show('Clicked', singleEvent, self.usersAndComments);
+      console.log(self.usersAndComments);
       $('#calendar').fullCalendar('updateEvent', singleEvent);
     }
 

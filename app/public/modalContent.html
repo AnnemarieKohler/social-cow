@@ -21,11 +21,13 @@
   </p>
 
   <section>
+
     <ul>
-      <li ng-repeat="comment in ctrl.commentsArray">
-        {{ comment.UserId }} said: {{ comment.body }}
+      <li ng-repeat="comUser in ctrl.usersAndComments">
+        {{ comUser.username }} said: {{ comUser.comment.body }}
       </li>
     </ul>
+
   </section>
 
   <section ng-controller="socialCalController as controller">

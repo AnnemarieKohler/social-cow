@@ -52,7 +52,6 @@ router.post('/events', function(req, res) {
 });
 
 router.get('/comments', function(req, res) {
-  console.log(req);
   models.Comment.findAll({
     where: {
       EventId: req.query.eventid
@@ -69,6 +68,16 @@ router.post('/comments', function(req, res) {
       EventId: req.body.eventid
   }).then(function(response) {
     res.send('Done the comment');
+  });
+});
+
+router.get('/commentusers', function(req, res) {
+  models.User.findAll({
+    where: {
+      id: req.query.userid
+    }
+  }).then(function(response) {
+    res.send(response);
   });
 });
 
