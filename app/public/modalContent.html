@@ -19,6 +19,22 @@
     <label class='tgl-btn' data-tg-off="Not going" data-tg-on="Going!" for='cb5'></label>
     <pre>Answer: {{ ctrl.checkboxModel.value }}</pre>
   </p>
+
+  <section>
+    <ul>
+      <li ng-repeat="comment in ctrl.commentsArray">
+        {{ comment.UserId }} said: {{ comment.body }}
+      </li>
+    </ul>
+  </section>
+
+  <section ng-controller="socialCalController as controller">
+    <section>
+      <textarea class="form-control" placeholder="Leave a comment" rows="3" ng-model="commentText"></textarea>
+      <button class="btn btn-primary" type="submit" ng-click="controller.postComment(ctrl.event.EventId, commentText)">Leave a comment</button>
+    </section>
+
+  </section>
 </div>
 
 <div class="modal-footer">

@@ -4,13 +4,14 @@ angular
                                       function(alert, $window, $cookies, $http, socialCalGetService, socialCalPostService, userPersistenceService) {
 
     var self = this;
+    self.commentsArray = [];
 
     self.user = userPersistenceService.getCookieData();
 
     self.checkboxModel = {
       value1 : "YES"
     };
-    self.events = [];
+
     self.eventSources = [{
       title: "PUB PLEASE",
       start: "2016-05-06T19:00",
@@ -23,15 +24,32 @@ angular
         var dateTime = moment(correctDateFormat).subtract(1, 'hours');
         return self.eventSources.push({
           title: singleEvent.title,
-          start: dateTime
+          start: dateTime,
+          EventId: singleEvent.id
         });
       });
     });
 
+
+    self.getComments = function(id, singleEvent) {
+      self.commentsArray = [];
+      return socialCalGetService.getCommentsFromDB(id).then(function(comments) {
+        return comments.map(function(singleComment) {
+          return self.commentsArray.push(singleComment);
+        });
+      });
+    };
+
+    self.postComment = function(eventId, text) {
+      return socialCalPostService.postCommentToDB(self.user.userId, eventId, text).then(function(response) {
+        console.log("Posted to backend");
+      });
+    };
+
     self.signUpUser = function(username, password) {
-      userPersistenceService.setCookieData(username);
       return socialCalPostService.postUserToDB(username, password).then(function(response) {
         if(response.status === 200){
+          userPersistenceService.setCookieData(response.data.id, response.data.username);
           $window.location.reload();
         } else {
           console.log(response.status);
@@ -44,7 +62,7 @@ angular
         if(response.data.length === 0){
           alert("NO");
         } else {
-          userPersistenceService.setCookieData(username);
+          userPersistenceService.setCookieData(response.data.id, response.data.username);
           $window.location.reload();
         }
       });
@@ -55,7 +73,7 @@ angular
     };
 
     self.addEvent = function(eventTitle, eventDate, eventTime) {
-      return socialCalPostService.postEventsToDB(eventTitle, eventDate, eventTime)
+      return socialCalPostService.postEventsToDB(eventTitle, eventDate, eventTime, self.user.userId)
       .then(function(response) {
         if(response.status === 200){
           var dateArray = eventTime.toString().split(" ");
@@ -72,10 +90,18 @@ angular
       });
     };
 
-    self.alertOnEventClick = function(date, jsEvent, view) {
-      alert.show('Clicked', date);
-      $('#calendar').fullCalendar('updateEvent', date);
+
+    self.alertOnEventClick = function(singleEvent, jsEvent, view) {
+      self.getComments(singleEvent.EventId);
+      setTimeout(function() {
+        showCalendar(singleEvent);
+      } , 500);
     };
+
+    function showCalendar(singleEvent) {
+      alert.show('Clicked', singleEvent, self.commentsArray);
+      $('#calendar').fullCalendar('updateEvent', singleEvent);
+    }
 
     self.uiConfig = {
       calendar:{

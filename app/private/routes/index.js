@@ -6,27 +6,30 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
 
 router.post('/sessions', function(req, res) {
-  models.User.findAll({
+  return models.User.findAll({
     where: {
       username: req.body.username,
       password: req.body.password
     }
   }).then(function(response) {
-    res.send(response);
+    var userId = response[0].dataValues.id;
+    var username = response[0].dataValues.username;
+    res.status(200).send({id: userId, username: username});
   });
 });
 
 router.post('/users', function(req, res) {
-  models.User.findOrCreate({
+  return models.User.findOrCreate({
     where: {
       username: req.body.username,
       password: req.body.password
     }
   }).then(function(response) {
-    res.send('Redirected');
+    var userId = response[0].dataValues.id;
+    var username = response[0].dataValues.username;
+    res.status(200).send({id: userId, username: username});
     res.redirect('/');
   });
-
 });
 
 router.get('/events', function(req, res) {
@@ -40,7 +43,8 @@ router.post('/events', function(req, res) {
     where: {
       title: req.body.title,
       date: req.body.date,
-      time: req.body.time
+      time: req.body.time,
+      UserId: req.body.userid
     }
   }).then(function(response) {
     res.send('Done the post');
@@ -48,6 +52,7 @@ router.post('/events', function(req, res) {
 });
 
 router.get('/comments', function(req, res) {
+  console.log(req);
   models.Comment.findAll({
     where: {
       EventId: req.query.eventid

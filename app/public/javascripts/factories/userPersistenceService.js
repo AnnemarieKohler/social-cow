@@ -2,21 +2,24 @@ angular
   .module('socialCal')
   .factory("userPersistenceService", [
 	"$cookies", function($cookies) {
-		var username = "";
+		var currentUserId, username, loginData;
 
 		return {
-			setCookieData: function(name) {
-				username = name;
+			setCookieData: function(id, username) {
+				$cookies.put("currentUserId", id);
 				$cookies.put("username", username);
 			},
 			getCookieData: function() {
-				username = $cookies.get("username");
-				return username;
+				currentUserId = $cookies.get("currentUserId");
+        username = $cookies.get("username");
+        loginData = { userId: currentUserId, username: username };
+				return loginData;
 			},
 			clearCookieData: function() {
-				username = "";
+        loginData = {};
+				$cookies.remove("currentUserId");
 				$cookies.remove("username");
 			}
-		}
+		};
 	}
 ]);
