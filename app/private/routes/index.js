@@ -67,4 +67,25 @@ router.post('/comments', function(req, res) {
   });
 });
 
+router.get('/attendees', function(req, res) {
+  models.Attendee.findAll({
+    where: {
+      EventId: req.query.eventid
+    }
+  }).then(function(response) {
+    res.send(response);
+  });
+});
+
+router.post('/attendees', function(req, res) {
+  models.Attendee.findOrCreate({
+    where: {
+      UserId: req.body.userid,
+      EventId: req.body.eventid
+    }
+  }).then(function(response) {
+    res.send(response);
+  });
+});
+
 module.exports = router;
