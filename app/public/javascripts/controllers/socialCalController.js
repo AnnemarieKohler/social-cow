@@ -61,7 +61,8 @@ angular
     };
 
     self.addEvent = function(eventTitle, eventDate, eventTime) {
-      return socialCalPostService.postEventsToDB(eventTitle, eventDate, eventTime)
+      console.log(self.user.username, self.user.userId);
+      return socialCalPostService.postEventsToDB(eventTitle, eventDate, eventTime, self.user.userId)
       .then(function(response) {
         if(response.status === 200){
           var dateArray = eventTime.toString().split(" ");

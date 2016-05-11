@@ -45,7 +45,8 @@ router.post('/events', function(req, res) {
     where: {
       title: req.body.title,
       date: req.body.date,
-      time: req.body.time
+      time: req.body.time,
+      UserId: req.body.userid
     }
   }).then(function(response) {
     res.send('Done the post');

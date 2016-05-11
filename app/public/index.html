@@ -35,7 +35,7 @@
 
   <body>
     <section ng-controller="socialCalController as ctrl">
-        <div ng-if="ctrl.user == undefined">
+        <div ng-if="ctrl.user.username == undefined">
 
 
           <h2>Log into SocialCal</h2>
@@ -54,8 +54,8 @@
 
         </div>
 
-        <div ng-if="ctrl.user != undefined">
-          <h1 id="user-welcome">Welcome, {{ ctrl.user }}</h1>
+        <div ng-if="ctrl.user.username != undefined">
+          <h1 id="user-welcome">Welcome, {{ ctrl.user.username }}</h1>
           <a href="/" ng-click="ctrl.signOutUser()" target="_self"><button id="user-sign-out" type="submit">Sign Out</button></a>
           <section>
               <input id="new-event-title" ng-model="eventTitle" placeholder="Event title">

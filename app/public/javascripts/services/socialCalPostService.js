@@ -3,13 +3,16 @@ angular
   .service('socialCalPostService', ['$http', function($http) {
     var self = this;
 
-    self.postEventsToDB = function(eventTitle, eventDate, eventTime) {
+    self.postEventsToDB = function(eventTitle, eventDate, eventTime, eventUserId) {
+      console.log(eventTime);
+      console.log(eventUserId);
       var dateArray = eventTime.toString().split(" ");
       var correctTimeFormat = dateArray[4];
       var correctDate = moment(eventDate).add(1, 'days')._d;
       var formData = { title: eventTitle,
                        date: correctDate,
-                       time: correctTimeFormat };
+                       time: correctTimeFormat,
+                       userid: eventUserId};
       var url = '/events';
       var data = JSON.stringify(formData);
       var headers = { headers: { 'Content-Type': 'application/json' }};

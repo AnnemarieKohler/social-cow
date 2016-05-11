@@ -2,7 +2,7 @@ angular
   .module('socialCal')
   .factory("userPersistenceService", [
 	"$cookies", function($cookies) {
-		var currentUserId, username;
+		var currentUserId, username, loginData;
 
 		return {
 			setCookieData: function(id, username) {
@@ -12,9 +12,11 @@ angular
 			getCookieData: function() {
 				currentUserId = $cookies.get("currentUserId");
         username = $cookies.get("username");
-				return currentUserId, username;
+        loginData = { userId: currentUserId, username: username };
+				return loginData;
 			},
 			clearCookieData: function() {
+        loginData = {};
 				$cookies.remove("currentUserId");
 				$cookies.remove("username");
 			}
