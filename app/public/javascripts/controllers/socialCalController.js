@@ -1,7 +1,7 @@
 angular
   .module('socialCal')
-  .controller('socialCalController', ['alert', '$window', '$cookies', '$http', 'socialCalGetService', 'socialCalPostService', 'userPersistenceService',
-                                      function(alert, $window, $cookies, $http, socialCalGetService, socialCalPostService, userPersistenceService) {
+  .controller('socialCalController', ['alert', '$window', '$cookies', '$http', 'socialCalGetService', 'socialCalPostService', 'userPersistenceService', 'notificationService',
+                        function(alert, $window, $cookies, $http, socialCalGetService, socialCalPostService, userPersistenceService, notificationService) {
 
     var self = this;
     self.commentsArray = [];
@@ -9,7 +9,7 @@ angular
     self.user = userPersistenceService.getCookieData();
 
     self.checkboxModel = {
-      value1 : "YES"
+      value1 : "Yes"
     };
 
     self.eventSources = [{
@@ -22,6 +22,9 @@ angular
       return events.map(function(singleEvent) {
         var correctDateFormat = moment(singleEvent.date.replace("00:00:00", singleEvent.time)).format('YYYY-MM-DDTHH:mm');
         var dateTime = moment(correctDateFormat).subtract(1, 'hours');
+
+        self.showLoginNotifications(events, parseInt(self.user.userId));
+
         return self.eventSources.push({
           title: singleEvent.title,
           start: dateTime,
@@ -29,7 +32,6 @@ angular
         });
       });
     });
-
 
     self.getComments = function(id, singleEvent) {
       self.commentsArray = [];
@@ -44,6 +46,19 @@ angular
       return socialCalPostService.postCommentToDB(self.user.userId, eventId, text).then(function(response) {
         console.log("Posted to backend");
       });
+    };
+
+    self.belongsToCurrentUser = function(singleEvent) {
+      return singleEvent.UserId === parseInt(self.user.userId);
+    };
+
+    self.showLoginNotifications = function(events, id) {
+        notificationService.showCommentNotifications(events, id);
+        notificationService.showAttendingNotifications(events, id);
+    };
+
+    self.attendingNotification = function(checkValue) {
+      console.log(self.checkboxModel);
     };
 
     self.signUpUser = function(username, password) {
@@ -106,6 +121,7 @@ angular
     self.uiConfig = {
       calendar:{
         height: 450,
+        contentHeight: 700,
         editable: true,
         header:{
           left: 'month basicWeek basicDay agendaWeek agendaDay',
