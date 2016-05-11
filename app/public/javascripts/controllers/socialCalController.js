@@ -143,7 +143,6 @@ angular
 
     function showCalendar(singleEvent) {
       alert.show('Clicked', singleEvent, self.usersAndComments);
-      console.log(self.usersAndComments);
       $('#calendar').fullCalendar('updateEvent', singleEvent);
     }
 
