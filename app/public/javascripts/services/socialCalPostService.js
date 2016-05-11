@@ -4,8 +4,6 @@ angular
     var self = this;
 
     self.postEventsToDB = function(eventTitle, eventDate, eventTime, eventUserId) {
-      console.log(eventTime);
-      console.log(eventUserId);
       var dateArray = eventTime.toString().split(" ");
       var correctTimeFormat = dateArray[4];
       var correctDate = moment(eventDate).add(1, 'days')._d;
@@ -19,10 +17,28 @@ angular
 
       return $http.post(url, data, headers).then(function(res) {
         self.status = '';
-        console.log("Service done");
         return res;
       }).catch(function(res) {
         console.log(res);
+        self.status = 'Failed';
+        return self.status;
+      });
+    };
+
+    self.postCommentToDB = function(userId, eventId, text) {
+      var commentData = { body: text,
+                          userid: userId,
+                          eventid: eventId
+                        };
+      var url = '/comments';
+      var data = JSON.stringify(commentData);
+      var headers = { headers: { 'Content-Type': 'application/json' }};
+
+      return $http.post(url, data, headers).then(function(res) {
+        self.status = '';
+        console.log("POST REQUEST FROM POST SERVICE MADE");
+        return res;
+      }).catch(function() {
         self.status = 'Failed';
         return self.status;
       });

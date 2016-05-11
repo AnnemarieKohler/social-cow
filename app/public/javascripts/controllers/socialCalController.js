@@ -23,18 +23,19 @@ angular
         var dateTime = moment(correctDateFormat).subtract(1, 'hours');
         return self.eventSources.push({
           title: singleEvent.title,
-          start: dateTime
+          start: dateTime,
+          EventId: singleEvent.id
         });
       });
     });
 
-    self.postComment = function(singleEvent, text) {
-      // socialCalPostService.postCommentToDB(eventID)
-      console.log(singleEvent);
+    self.postComment = function(eventId, text) {
+      return socialCalPostService.postCommentToDB(self.user.userId, eventId, text).then(function(response) {
+        console.log("Posted to backend");
+      });
     };
 
     self.signUpUser = function(username, password) {
-      // Move this to the if statement with response.data.id
       return socialCalPostService.postUserToDB(username, password).then(function(response) {
         if(response.status === 200){
           userPersistenceService.setCookieData(response.data.id, response.data.username);
@@ -61,7 +62,6 @@ angular
     };
 
     self.addEvent = function(eventTitle, eventDate, eventTime) {
-      console.log(self.user.username, self.user.userId);
       return socialCalPostService.postEventsToDB(eventTitle, eventDate, eventTime, self.user.userId)
       .then(function(response) {
         if(response.status === 200){
