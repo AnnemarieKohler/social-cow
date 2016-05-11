@@ -16,17 +16,19 @@ router.post('/sessions', function(req, res) {
   });
 });
 
+
+
 router.post('/users', function(req, res) {
-  models.User.findOrCreate({
+  return models.User.findOrCreate({
     where: {
       username: req.body.username,
       password: req.body.password
     }
   }).then(function(response) {
-    res.send('Redirected');
+    var userId = response[0].dataValues.id;
+    res.status(200).send({id: userId});
     res.redirect('/');
   });
-
 });
 
 router.get('/events', function(req, res) {
