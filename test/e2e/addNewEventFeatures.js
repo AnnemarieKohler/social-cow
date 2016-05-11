@@ -4,19 +4,20 @@ describe('socialCalendar', function() {
     expect(browser.getTitle()).toEqual('SocialCal');
   });
 
-  xit('creates a new event', function() {
-    // var millisecs = 300000;
+  it('creates a new event', function() {
     browser.get('/');
+    $('#new-user-username').sendKeys("user1");
+    $('#new-user-password').sendKeys("userpassword");
+    $('#new-user-submit').click();
 
     $('#new-event-title').sendKeys("New Event");
     $('#new-event-date').sendKeys("13/05/2016");
     $('#new-event-time').sendKeys("19:00");
     $('#new-event-submit').click();
     browser.get('/');
-    var newEvent = $$('#events ul li').last().getText();
-    // console.log($$('#events ul li').last().getText());
-    expect(newEvent).toContain('New Event');
-    expect(newEvent).toContain('2016-05-13T00:00:00.000Z');
-    expect(newEvent).toContain('19:00');
+    var calendar = element(by.css('#calendar'));
+    calendar.getText().then(function(text) {
+      expect(text).toContain('19:00 New Event');
+    });
   });
 });
