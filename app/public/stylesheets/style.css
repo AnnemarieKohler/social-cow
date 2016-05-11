@@ -112,6 +112,7 @@ pre {
   -webkit-transform: rotateY(20deg);
           transform: rotateY(20deg);
 }
+
 growl-notification.fading.ng-move{
     opacity: 0;
     -webkit-transition: 1s linear all; /* Safari/Chrome */

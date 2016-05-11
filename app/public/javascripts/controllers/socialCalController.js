@@ -8,13 +8,13 @@ angular
     self.user = userPersistenceService.getCookieData();
 
     self.checkboxModel = {
-      value1 : "YES"
+      value1 : "Yes"
     };
     self.events = [];
     self.eventSources = [{
       title: "PUB PLEASE",
       start: "2016-05-06T19:00",
-      end: "2016-05-06T21:00"
+      end: "2016-05-06T21:00"      
     }];
 
     socialCalGetService.getEventsFromDB().then(function(events) {
@@ -22,7 +22,7 @@ angular
         var correctDateFormat = moment(singleEvent.date.replace("00:00:00", singleEvent.time)).format('YYYY-MM-DDTHH:mm');
         var dateTime = moment(correctDateFormat).subtract(1, 'hours');
 
-        notificationService.loginNotifications(singleEvent, parseInt(self.user.userId));
+        self.showLoginNotifications(events, parseInt(self.user.userId));
 
         return self.eventSources.push({
           title: singleEvent.title,
@@ -31,9 +31,22 @@ angular
       });
     });
 
+    self.belongsToCurrentUser = function(singleEvent) {
+      return singleEvent.UserId === parseInt(self.user.userId);
+    };
+
+    self.showLoginNotifications = function(events, id) {
+        notificationService.showCommentNotifications(events, id);
+        notificationService.showAttendingNotifications(events, id);
+    };
+
     self.postComment = function(singleEvent, text) {
       // socialCalPostService.postCommentToDB(eventID)
       console.log(singleEvent);
+    };
+
+    self.attendingNotification = function(checkValue) {
+      console.log(self.checkboxModel);
     };
 
     self.signUpUser = function(username, password) {
@@ -90,6 +103,7 @@ angular
     self.uiConfig = {
       calendar:{
         height: 450,
+        contentHeight: 700,
         editable: true,
         header:{
           left: 'month basicWeek basicDay agendaWeek agendaDay',

@@ -15,9 +15,9 @@
     <pre>** Location **</pre>  </p>
   <p>
   <p id="attend">Attend?
-    <input class='tgl tgl-flip' id='cb5' type='checkbox'>
+    <input class='tgl tgl-flip' id='cb5' type='checkbox' ng-model="ctrl.checkboxModel.value">
     <label class='tgl-btn' data-tg-off="Not going" data-tg-on="Going!" for='cb5'></label>
-    <pre>Answer: {{ ctrl.checkboxModel.value }}</pre>
+    <pre>Answer: {{ ctrl.checkboxModel.value1 }}</pre>
   </p>
 
   <section ng-controller="socialCalController as controller">
@@ -26,6 +26,6 @@
   </section>
 </div>
 
-<div class="modal-footer">
-  <button class="btn btn-primary" ng-click="$close()">OK</button>
+<div class="modal-footer" ng-controller="socialCalController as controller">
+  <button class="btn btn-primary" ng-click="$close(); controller.attendingNotification()">OK</button>
 </div>
