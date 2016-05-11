@@ -5,14 +5,6 @@ var models = require('../server/models/index');
 router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
 
-router.get('/sessions/new', function(req, res, next) {
-  res.render('sessions');
-});
-
-router.get('/users/new', function(req, res, next) {
-  res.render('users');
-});
-
 router.post('/sessions', function(req, res) {
   models.User.findAll({
     where: {
