@@ -50,7 +50,7 @@ angular
         if(response.data.length === 0){
           alert("NO");
         } else {
-          userPersistenceService.setCookieData(username);
+          userPersistenceService.setCookieData(response.data.id, response.data.username);
           $window.location.reload();
         }
       });

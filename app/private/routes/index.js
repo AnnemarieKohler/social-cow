@@ -6,13 +6,15 @@ router.use(bodyParser.json());
 router.use(bodyParser.urlencoded({ extended: false }));
 
 router.post('/sessions', function(req, res) {
-  models.User.findAll({
+  return models.User.findAll({
     where: {
       username: req.body.username,
       password: req.body.password
     }
   }).then(function(response) {
-    res.send(response);
+    var userId = response[0].dataValues.id;
+    var username = response[0].dataValues.username;
+    res.status(200).send({id: userId, username: username});
   });
 });
 
@@ -27,7 +29,6 @@ router.post('/users', function(req, res) {
   }).then(function(response) {
     var userId = response[0].dataValues.id;
     var username = response[0].dataValues.username;
-    console.log(response)
     res.status(200).send({id: userId, username: username});
     res.redirect('/');
   });
