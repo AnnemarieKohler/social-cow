@@ -32,6 +32,16 @@ router.post('/users', function(req, res) {
   });
 });
 
+router.get('/users', function(req, res) {
+  models.User.find({
+    where: {
+      id: req.query.id
+    }
+  }).then(function(userData){
+    res.send(userData);
+  });
+});
+
 router.get('/events', function(req, res) {
   models.Event.findAll().then(function(events) {
     res.send(events);
@@ -52,7 +62,6 @@ router.post('/events', function(req, res) {
 });
 
 router.get('/comments', function(req, res) {
-  console.log(req);
   models.Comment.findAll({
     where: {
       EventId: req.query.eventid
@@ -68,7 +77,13 @@ router.post('/comments', function(req, res) {
       UserId: req.body.userid,
       EventId: req.body.eventid
   }).then(function(response) {
-    res.send('Done the comment');
+    models.Comment.findAll({
+      where: {
+        EventId: req.body.eventid
+      }
+    }).then(function(response) {
+      res.send(response);
+    });
   });
 });
 

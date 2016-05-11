@@ -29,18 +29,17 @@ angular
       });
     });
 
-    self.getComments = function(id, singleEvent) {
-      self.commentsArray = [];
+    self.getComments = function(id, callback) {
       return socialCalGetService.getCommentsFromDB(id).then(function(comments) {
-        return comments.map(function(singleComment) {
-          return self.commentsArray.push(singleComment);
-        });
+        self.commentsArray = comments;
+        return comments;
       });
     };
 
     self.postComment = function(eventId, text) {
       return socialCalPostService.postCommentToDB(self.user.userId, eventId, text).then(function(response) {
-        console.log("Posted to backend");
+        // console.log("Posted to backend");
+        self.commentsArray = response.data;
       });
     };
 
@@ -102,15 +101,14 @@ angular
     };
 
 
-    self.alertOnEventClick = function(singleEvent, jsEvent, view) {
-      self.getComments(singleEvent.EventId);
-      setTimeout(function() {
-        showCalendar(singleEvent);
-      } , 500);
+    self.alertOnEventClick = function(singleEvent) {
+      self.getComments(singleEvent.EventId).then(function(comments) {
+        showCalendar(singleEvent, comments)
+      });
     };
 
-    function showCalendar(singleEvent) {
-      alert.show('Clicked', singleEvent, self.commentsArray);
+    function showCalendar(singleEvent, comments) {
+      alert.show('Clicked', singleEvent, comments, self.user.username);
       $('#calendar').fullCalendar('updateEvent', singleEvent);
     }
 

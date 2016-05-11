@@ -4,31 +4,28 @@
 
 <div class="modal-body">
   <p>Arranged by:
-    <pre>** User **</pre>
+    <pre>{{ ctrl.username }}</pre>
   </p>
   <p>Date:
     <pre>{{ ctrl.event.start }}</pre>  </p>
   <p>Attendees:
     <pre>** List of attendees **</pre>
   </p>
-  <p>Location:
-    <pre>** Location **</pre>  </p>
-  <p>
   <p id="attend">Attend?
     <input class='tgl tgl-flip' id='cb5' type='checkbox' ng-model="ctrl.checkboxModel.value">
     <label class='tgl-btn' data-tg-off="Not going" data-tg-on="Going!" for='cb5'></label>
-    <pre>Answer: {{ ctrl.checkboxModel.value1 }}</pre>
+    <!-- <pre>Answer: {{ ctrl.checkboxModel.value1 }}</pre> -->
   </p>
-
-  <section>
-    <ul>
-      <li ng-repeat="comment in ctrl.commentsArray">
-        {{ comment.UserId }} said: {{ comment.body }}
-      </li>
-    </ul>
-  </section>
-
   <section ng-controller="socialCalController as controller">
+    <section>
+      <ul>
+        <li ng-repeat="comment in ctrl.commentsArray">
+          {{ comment.UserId }} said: {{ comment.body }}
+        </li>
+      </ul>
+    </section>
+
+
     <section>
       <textarea class="form-control" placeholder="Leave a comment" rows="3" ng-model="commentText"></textarea>
       <button class="btn btn-primary" type="submit" ng-click="controller.postComment(ctrl.event.EventId, commentText)">Leave a comment</button>
