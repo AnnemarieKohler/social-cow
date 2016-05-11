@@ -28,6 +28,11 @@ angular
       });
     });
 
+    self.postComment = function(singleEvent, text) {
+      // socialCalPostService.postCommentToDB(eventID)
+      console.log(singleEvent);
+    };
+
     self.signUpUser = function(username, password) {
       userPersistenceService.setCookieData(username);
       return socialCalPostService.postUserToDB(username, password).then(function(response) {

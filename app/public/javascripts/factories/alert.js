@@ -9,7 +9,6 @@ angular
           var self = this;
           self.action = action;
           self.event = singleEvent;
-          console.log(singleEvent);
         },
         controllerAs: 'ctrl'
       });
