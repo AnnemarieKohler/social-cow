@@ -31,12 +31,11 @@ angular
     });
 
 
-    self.getComments = function(id) {
+    self.getComments = function(id, singleEvent) {
+      console.log("1");
       return socialCalGetService.getCommentsFromDB(id).then(function(comments) {
-        console.log(comments);
         return comments.map(function(singleComment) {
-          console.log(singleComment);
-          console.log(self.commentsArray);
+          console.log("2");
           return self.commentsArray.push(singleComment);
         });
       });
@@ -92,12 +91,22 @@ angular
       });
     };
 
+
     self.alertOnEventClick = function(singleEvent, jsEvent, view) {
-      alert.show('Clicked', singleEvent);
-      $('#calendar').fullCalendar('updateEvent', singleEvent);
+      console.log(singleEvent);
       self.getComments(singleEvent.EventId);
-      console.log(self.commentsArray);
+      setTimeout(function() {
+        showCalendar(singleEvent);
+      } , 500);
     };
+
+    function showCalendar(singleEvent) {
+      console.log(singleEvent);
+      alert.show('Clicked', singleEvent, self.commentsArray);
+      console.log("3");
+      console.log(self.commentsArray);
+      $('#calendar').fullCalendar('updateEvent', singleEvent);
+    }
 
     self.uiConfig = {
       calendar:{

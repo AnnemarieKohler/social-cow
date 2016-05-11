@@ -20,16 +20,15 @@
     <pre>Answer: {{ ctrl.checkboxModel.value }}</pre>
   </p>
 
+  <section>
+    <ul>
+      <li ng-repeat="comment in ctrl.commentsArray">
+        {{ comment.UserId }} said: {{ comment.body }}
+      </li>
+    </ul>
+  </section>
+
   <section ng-controller="socialCalController as controller">
-
-    <section>
-      <ul>
-        <li ng-repeat="comment in controller.commentsArray">
-          {{ comment.UserId }} said: {{ comment.body }}
-        </li>
-      </ul>
-    </section>
-
     <section>
       <textarea class="form-control" placeholder="Leave a comment" rows="3" ng-model="commentText"></textarea>
       <button class="btn btn-primary" type="submit" ng-click="controller.postComment(ctrl.event.EventId, commentText)">Leave a comment</button>
