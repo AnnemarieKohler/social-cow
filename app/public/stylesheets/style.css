@@ -112,3 +112,21 @@ pre {
   -webkit-transform: rotateY(20deg);
           transform: rotateY(20deg);
 }
+growl-notification.fading.ng-move{
+    opacity: 0;
+    -webkit-transition: 1s linear all; /* Safari/Chrome */
+    transition: 1s linear all; /* All other modern browsers and IE10+ */
+}
+
+growl-notification.fading.ng-move.ng-move-active {
+    opacity: 1;
+}
+growl-notification.fading.ng-leave {
+    opacity: 1;
+    -webkit-transition: 0.5s linear all; /* Safari/Chrome */
+    transition: 0.5s linear all; /* All other modern browsers and IE10+ */
+}
+
+growl-notification.fading.ng-leave.ng-leave-active {
+    opacity: 0;
+}

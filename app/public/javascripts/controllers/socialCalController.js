@@ -1,7 +1,10 @@
 angular
   .module('socialCal')
-  .controller('socialCalController', ['alert', '$window', '$cookies', '$http', 'socialCalGetService', 'socialCalPostService', 'userPersistenceService',
-                                      function(alert, $window, $cookies, $http, socialCalGetService, socialCalPostService, userPersistenceService) {
+  .config(['growlProvider', function (growlProvider) {
+  growlProvider.globalTimeToLive(5000);
+}])
+  .controller('socialCalController', ['alert', '$window', '$cookies', '$http', 'socialCalGetService', 'socialCalPostService', 'userPersistenceService', 'growl',
+                                      function(alert, $window, $cookies, $http, socialCalGetService, socialCalPostService, userPersistenceService, growl) {
 
     var self = this;
 
@@ -21,12 +24,21 @@ angular
       return events.map(function(singleEvent) {
         var correctDateFormat = moment(singleEvent.date.replace("00:00:00", singleEvent.time)).format('YYYY-MM-DDTHH:mm');
         var dateTime = moment(correctDateFormat).subtract(1, 'hours');
+
+        self.commentNotificationHandler(singleEvent);
+
         return self.eventSources.push({
           title: singleEvent.title,
           start: dateTime
         });
       });
     });
+
+    self.commentNotificationHandler = function(singleEvent) {
+      if(singleEvent.UserId === parseInt(self.user.userId)) {
+        growl.info("New comment on your event " + singleEvent.title + ": HEY THERE1");
+      }
+    };
 
     self.postComment = function(singleEvent, text) {
       // socialCalPostService.postCommentToDB(eventID)

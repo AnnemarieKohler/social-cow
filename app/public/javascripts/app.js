@@ -1,1 +1,1 @@
-angular.module('socialCal', ['ui.calendar', 'ngCookies', 'ngAnimate', 'ui.bootstrap']);
+angular.module('socialCal', ['ui.calendar', 'ngCookies', 'ngAnimate', 'ui.bootstrap', 'angular-growl']);
