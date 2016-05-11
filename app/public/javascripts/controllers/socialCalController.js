@@ -32,10 +32,9 @@ angular
 
 
     self.getComments = function(id, singleEvent) {
-      console.log("1");
+      self.commentsArray = [];
       return socialCalGetService.getCommentsFromDB(id).then(function(comments) {
         return comments.map(function(singleComment) {
-          console.log("2");
           return self.commentsArray.push(singleComment);
         });
       });
@@ -93,7 +92,6 @@ angular
 
 
     self.alertOnEventClick = function(singleEvent, jsEvent, view) {
-      console.log(singleEvent);
       self.getComments(singleEvent.EventId);
       setTimeout(function() {
         showCalendar(singleEvent);
@@ -101,10 +99,7 @@ angular
     };
 
     function showCalendar(singleEvent) {
-      console.log(singleEvent);
       alert.show('Clicked', singleEvent, self.commentsArray);
-      console.log("3");
-      console.log(self.commentsArray);
       $('#calendar').fullCalendar('updateEvent', singleEvent);
     }
 
