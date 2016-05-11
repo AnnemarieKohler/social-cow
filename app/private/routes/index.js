@@ -56,6 +56,9 @@ router.post('/events', function(req, res) {
 });
 
 router.get('/comments', function(req, res) {
+
+  console.log('Here is the response: ')
+  console.log(res)
   models.Comment.findAll({
     where: {
       EventId: req.query.eventid
