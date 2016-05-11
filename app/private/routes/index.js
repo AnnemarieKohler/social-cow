@@ -26,7 +26,9 @@ router.post('/users', function(req, res) {
     }
   }).then(function(response) {
     var userId = response[0].dataValues.id;
-    res.status(200).send({id: userId});
+    var username = response[0].dataValues.username;
+    console.log(response)
+    res.status(200).send({id: userId, username: username});
     res.redirect('/');
   });
 });

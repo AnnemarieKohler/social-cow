@@ -35,9 +35,9 @@ angular
 
     self.signUpUser = function(username, password) {
       // Move this to the if statement with response.data.id
-      userPersistenceService.setCookieData(username);
       return socialCalPostService.postUserToDB(username, password).then(function(response) {
         if(response.status === 200){
+          userPersistenceService.setCookieData(response.data.id, response.data.username);
           $window.location.reload();
         } else {
           console.log(response.status);
