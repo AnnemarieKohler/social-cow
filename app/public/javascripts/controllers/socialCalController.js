@@ -12,11 +12,7 @@ angular
       value1 : "Yes"
     };
 
-    self.eventSources = [{
-      title: "PUB PLEASE",
-      start: "2016-05-06T19:00",
-      end: "2016-05-06T21:00"
-    }];
+    self.eventSources = [];
 
     socialCalGetService.getEventsFromDB().then(function(events) {
       return events.map(function(singleEvent) {
