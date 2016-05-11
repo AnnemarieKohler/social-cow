@@ -36,7 +36,6 @@ angular
 
       return $http.post(url, data, headers).then(function(res) {
         self.status = '';
-        console.log("POST REQUEST FROM POST SERVICE MADE");
         return res;
       }).catch(function() {
         self.status = 'Failed';

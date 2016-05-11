@@ -18,8 +18,6 @@ router.post('/sessions', function(req, res) {
   });
 });
 
-
-
 router.post('/users', function(req, res) {
   return models.User.findOrCreate({
     where: {
@@ -54,6 +52,7 @@ router.post('/events', function(req, res) {
 });
 
 router.get('/comments', function(req, res) {
+  console.log(req);
   models.Comment.findAll({
     where: {
       EventId: req.query.eventid

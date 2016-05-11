@@ -9,4 +9,10 @@ angular
       });
     };
 
+    self.getCommentsFromDB = function(eventId) {
+      return $http.get('/comments?eventid=' + eventId).then(function(res) {
+        return res.data;
+      });
+    };
+
   }]);

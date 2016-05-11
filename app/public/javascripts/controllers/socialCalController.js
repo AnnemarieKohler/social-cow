@@ -4,13 +4,14 @@ angular
                                       function(alert, $window, $cookies, $http, socialCalGetService, socialCalPostService, userPersistenceService) {
 
     var self = this;
+    self.commentsArray = [];
 
     self.user = userPersistenceService.getCookieData();
 
     self.checkboxModel = {
       value1 : "YES"
     };
-    self.events = [];
+
     self.eventSources = [{
       title: "PUB PLEASE",
       start: "2016-05-06T19:00",
@@ -28,6 +29,18 @@ angular
         });
       });
     });
+
+
+    self.getComments = function(id) {
+      return socialCalGetService.getCommentsFromDB(id).then(function(comments) {
+        console.log(comments);
+        return comments.map(function(singleComment) {
+          console.log(singleComment);
+          console.log(self.commentsArray);
+          return self.commentsArray.push(singleComment);
+        });
+      });
+    };
 
     self.postComment = function(eventId, text) {
       return socialCalPostService.postCommentToDB(self.user.userId, eventId, text).then(function(response) {
@@ -79,9 +92,11 @@ angular
       });
     };
 
-    self.alertOnEventClick = function(date, jsEvent, view) {
-      alert.show('Clicked', date);
-      $('#calendar').fullCalendar('updateEvent', date);
+    self.alertOnEventClick = function(singleEvent, jsEvent, view) {
+      alert.show('Clicked', singleEvent);
+      $('#calendar').fullCalendar('updateEvent', singleEvent);
+      self.getComments(singleEvent.EventId);
+      console.log(self.commentsArray);
     };
 
     self.uiConfig = {
