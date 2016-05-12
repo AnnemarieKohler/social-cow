@@ -33,9 +33,9 @@ angular
 
         function setEventColor() {
           if(singleEvent.UserId === parseInt(self.user.userId)){
-            return "#AEDEFF";
+            return "rgba(90, 33, 134, 0.29)";
           } else {
-            return "#B0AEFF";
+            return "#F7D99E";
           }
         }
       });

@@ -15,7 +15,8 @@ angular
 
           if (singleEvent.EventId === 6) {
             self.host = "Paul";
-
+            self.date = "13/05/2016 at 18:00";
+            self.attendees = "Paul";
           }
           if (singleEvent.EventId === 8) {
 
