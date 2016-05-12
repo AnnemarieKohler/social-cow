@@ -3,14 +3,18 @@
 </div>
 
 <div class="modal-body">
-  <p>Arranged by:
-    <pre> {{ ctrl.host }}</pre>
-  </p>
-  <p>Date:
-    <pre>{{ ctrl.date }}</pre>  </p>
-  <p>Attendees:
-    <pre> Paul </pre>
-  </p>
+
+  <h5>Arranged by:
+    <pre>** User **</pre>
+  </h5>
+
+  <h5>Date:
+    <pre>{{ ctrl.date }} at: {{ ctrl.time }}</pre>
+  </h5>
+
+  <h5>Attendees:
+    <pre>Paul, Anne, Yas</pre>
+  </h5>
 
   <p id="attend">Attend?
     <input class='tgl tgl-flip' id='cb5' type='checkbox' ng-model="ctrl.checkboxModel.value">
@@ -19,9 +23,9 @@
 
   <section class="scroll">
 
-    <ul>
-      <li ng-repeat="comUser in ctrl.usersAndComments">
-        {{ comUser.username }} said: {{ comUser.comment.body }}
+    <ul class="list-group">
+      <li ng-repeat="comUser in ctrl.usersAndComments" class="list-group-item">
+        <strong>{{ comUser.username }} said:</strong> {{ comUser.comment.body }}
       </li>
     </ul>
 

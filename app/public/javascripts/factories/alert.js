@@ -9,6 +9,8 @@ angular
           var self = this;
           self.action = action;
           self.event = singleEvent;
+          self.date = moment(singleEvent.start).format('Do MMM YYYY');
+          self.time = moment(singleEvent.start).format('HH:mm');
           self.usersAndComments = usersAndComments;
 
           if (singleEvent.EventId === 6) {
