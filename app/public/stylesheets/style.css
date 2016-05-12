@@ -28,9 +28,10 @@ a {
   background-color: #FFF;
 }
 
-.btn-primary {
+.btn-default, .btn-default:hover  {
   background-color: #584963;
   border-color: #584963;
+  color: white;
 }
 
 .image {
