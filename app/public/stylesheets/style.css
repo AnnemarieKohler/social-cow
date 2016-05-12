@@ -26,7 +26,11 @@ a {
 
 .fc-view, .fc-month-view, .fc-basic-view {
   background-color: #FFF;
-  border-radius: 8px;
+}
+
+.btn-primary {
+  background-color: #584963;
+  border-color: #584963;
 }
 
 .image {
