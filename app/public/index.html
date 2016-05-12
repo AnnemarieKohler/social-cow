@@ -4,7 +4,8 @@
   <head>
     <meta charset="utf-8">
     <title>SocialCal</title>
-
+    <link href='https://fonts.googleapis.com/css?family=Capriola' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Happy+Monkey' rel='stylesheet' type='text/css'>
     <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.js"></script>
@@ -41,41 +42,75 @@
 
   <body>
     <section ng-controller="socialCalController as ctrl">
-        <div ng-if="ctrl.user.username == undefined">
+      <section ng-if="ctrl.user.username == undefined">
+        <header class="jumbotron">
+          <section class="container">
+            <h1>Welcome to SocialCal</h1>
+            <p>
+              Helping you to organise time with your friends ... [[Slogan stuff here]]
+            </p>
+          </section>
+        </header>
 
-
-          <h2>Log into SocialCal</h2>
-          <form>
-            <input id="sign-in-username" ng-model="usernameSignIn" placeholder="Enter username">
-            <input type="password" id="sign-in-password" ng-model="passwordSignIn" placeholder="Enter password">
-            <button id="sign-in-submit" type="submit" ng-click="ctrl.signInUser(usernameSignIn, passwordSignIn)">Sign In</button>
+        <main class="container">
+          <h1>Log into SocialCal</h1>
+          <form class="form-inline">
+            <section class="form-group">
+              <label class="sr-only" for="sign-in-username">Username</label>
+              <input class="form-control" id="sign-in-username" ng-model="usernameSignIn" placeholder="Enter username">
+            </section>
+            <section class="form-group">
+              <label class="sr-only" for="sign-in-password">Password</label>
+              <input class="form-control" type="password" id="sign-in-password" ng-model="passwordSignIn" placeholder="Enter password">
+            </section>
+            <button class="btn btn-default" id="sign-in-submit" type="submit" ng-click="ctrl.signInUser(usernameSignIn, passwordSignIn)">Sign In</button>
           </form>
 
           <h3>Don't have an account yet? Sign up!</h3>
-          <form>
-            <input id="new-user-username" ng-model="usernameSignUp" placeholder="Enter username">
-            <input type="password" id="new-user-password" ng-model="passwordSignUp" placeholder="Enter password">
-            <button id="new-user-submit" type="submit" ng-click="ctrl.signUpUser(usernameSignUp, passwordSignUp)">Sign Up</button>
+
+          <form class="form-inline">
+            <section class="form-group">
+              <label class="sr-only" for="new-user-username">Username</label>
+              <input class="form-control" id="new-user-username" ng-model="usernameSignUp" placeholder="Enter username">
+            </section>
+            <section class="form-group">
+              <input class="form-control" type="password" id="new-user-password" ng-model="passwordSignUp" placeholder="Enter password">
+            </section>
+            <button class="btn btn-default" id="new-user-submit" type="submit" ng-click="ctrl.signUpUser(usernameSignUp, passwordSignUp)">Sign Up</button>
           </form>
+        </main>
+      </section>
 
-        </div>
+      <section ng-if="ctrl.user.username != undefined">
+        <nav class="navbar navbar-default">
+          <section class="container-fluid">
+            <span class="navbar-brand" id="user-welcome">Welcome, {{ ctrl.user.username }}</span>
 
-        <div ng-if="ctrl.user.username != undefined">
+            <section class="navbar-form navbar-left">
+              <section class="form-group">
+                <input class="form-control" id="new-event-title" ng-model="eventTitle" placeholder="Event title">
+              </section>
+              <section class="form-group">
+                <input class="form-control" type="date" id="new-event-date" ng-model="eventDate" placeholder="Event date">
+              </section>
+              <section class="form-group">
+                <input class="form-control" id="new-event-time" ng-model="eventTime" placeholder="Event time" type="time">
+              </section>
+              <button class="btn btn-default" id="new-event-submit" type="submit" ng-click="ctrl.addEvent(eventTitle, eventDate, eventTime)">Add event</button>
+            </section>
 
-          <div growl></div>
-
-          <h1 id="user-welcome">Welcome, {{ ctrl.user.username }}</h1>
-          <a href="/" ng-click="ctrl.signOutUser()" target="_self"><button id="user-sign-out" type="submit">Sign Out</button></a>
-          <section>
-              <input id="new-event-title" ng-model="eventTitle" placeholder="Event title">
-              <input type="date" id="new-event-date" ng-model="eventDate" placeholder="Event date">
-              <input id="new-event-time" ng-model="eventTime" placeholder="Event time" type="time">
-              <button id="new-event-submit" type="submit" ng-click="ctrl.addEvent(eventTitle, eventDate, eventTime)">Create</button>
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="/" ng-click="ctrl.signOutUser()" target="_self" id="user-sign-out">Sign Out</a></li>
+            </ul>
           </section>
-          <section>
-            <div id='calendar' ui-calendar='ctrl.uiConfig.calendar' ng-model='ctrl.eventSources'></div>
-          </section>
-        </div>
+        </nav>
+        <div growl></div>
+
+
+        <section>
+          <div id="calendar" ui-calendar="ctrl.uiConfig.calendar" ng-model="ctrl.eventSources"></div>
+        </section>
+      </section>
 
     </section>
   </body>
