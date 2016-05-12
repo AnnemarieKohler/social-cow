@@ -6,14 +6,15 @@
   <h5>Arranged by:
     <pre>** User **</pre>
   </h5>
+
   <h5>Date:
-    <pre>{{ ctrl.event.start }}</pre>  </p>
+    <pre>{{ ctrl.date }} at: {{ ctrl.time }}</pre>
+  </h5>
+
   <h5>Attendees:
     <pre>** List of attendees **</pre>
   </h5>
-  <h5>Location:
-    <pre>** Location **</pre>  </p>
-  <h5>
+
   <p id="attend">Attend?
     <input class='tgl tgl-flip' id='cb5' type='checkbox' ng-model="ctrl.checkboxModel.value">
     <label class='tgl-btn' data-tg-off="Not going" data-tg-on="Going!" for='cb5'></label>
