@@ -1,6 +1,13 @@
+* {
+  font-family: 'Montserrat', sans-serif;;
+}
+
 body {
   padding: 20px;
-  /*font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;*/
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Happy Monkey', cursive;;
 }
 
 a {
@@ -9,6 +16,10 @@ a {
 
 pre {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.margin {
+  margin-top: 20px;
 }
 
 #attend {
@@ -135,12 +146,4 @@ growl-notification.fading.ng-leave.ng-leave-active {
 .scroll {
   overflow-y: auto;
   max-height: 200px;
-}
-
-h1,h2,h3,h4,h5,h6 {
-  font-family: Capriola, sans-serif;;
-}
-
-* {
-  font-family: 'Happy Monkey', cursive;;
 }

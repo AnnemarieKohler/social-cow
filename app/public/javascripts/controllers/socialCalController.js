@@ -152,7 +152,7 @@ angular
         contentHeight: 700,
         editable: true,
         header:{
-          left: 'month basicWeek basicDay agendaWeek agendaDay',
+          left: 'month agendaWeek agendaDay',
           center: 'title',
           right: 'today prev,next'
         },
