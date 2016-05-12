@@ -29,7 +29,10 @@ angular
       });
     });
 
-    self.getComments = function(id, callback) {
+    self.getComments = function(id) {
+      // self.commentAuthor = socialCalGetService.getUserNameFromDB(id).then(function(user) {
+      //   return user
+      // })
       return socialCalGetService.getCommentsFromDB(id).then(function(comments) {
         self.commentsArray = comments;
         return comments;

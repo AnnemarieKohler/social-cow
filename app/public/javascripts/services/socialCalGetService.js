@@ -17,7 +17,7 @@ angular
 
     self.getUserNameFromDB = function(userId) {
       return $http.get('/users?id=' + id).then(function(res) {
-        return res.data;
+        return res.data.username;
       });
     }
   }]);
