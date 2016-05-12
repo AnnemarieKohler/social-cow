@@ -1,13 +1,21 @@
 * {
-  font-family: 'Montserrat', sans-serif;;
+  font-family: 'Hind', sans-serif;
 }
 
 body {
   padding: 20px;
 }
 
-h1,h2,h3,h4,h5,h6 {
-  font-family: 'Happy Monkey', cursive;;
+h1,h2,h3 {
+  font-family: 'Happy Monkey', cursive;
+}
+
+h5 {
+  font-weight: bolder;
+}
+
+li {
+  font-weight: normal;
 }
 
 a {
