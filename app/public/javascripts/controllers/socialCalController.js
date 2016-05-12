@@ -135,7 +135,7 @@ angular
           self.eventSources.push({
             title: eventTitle,
             start: dateTime,
-            color: "#AEDEFF",
+            color: "rgba(90, 33, 134, 0.29)",
             textColor: "black"
           });
         }
