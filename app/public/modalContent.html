@@ -4,20 +4,17 @@
 
 <div class="modal-body">
   <p>Arranged by:
-    <pre>** User **</pre>
+    <pre> {{ ctrl.host }}</pre>
   </p>
   <p>Date:
-    <pre>{{ ctrl.event.start }}</pre>  </p>
+    <pre>{{ ctrl.date }}</pre>  </p>
   <p>Attendees:
-    <pre>** List of attendees **</pre>
+    <pre> Paul </pre>
   </p>
-  <p>Location:
-    <pre>** Location **</pre>  </p>
-  <p>
+
   <p id="attend">Attend?
     <input class='tgl tgl-flip' id='cb5' type='checkbox' ng-model="ctrl.checkboxModel.value">
     <label class='tgl-btn' data-tg-off="Not going" data-tg-on="Going!" for='cb5'></label>
-    <pre>Answer: {{ ctrl.checkboxModel.value1 }}</pre>
   </p>
 
   <section class="scroll">

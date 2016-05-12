@@ -32,8 +32,6 @@ angular
         });
 
         function setEventColor() {
-          console.log(singleEvent.UserId);
-          console.log(parseInt(self.user.userId));
           if(singleEvent.UserId === parseInt(self.user.userId)){
             return "#AEDEFF";
           } else {

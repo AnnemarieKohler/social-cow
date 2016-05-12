@@ -10,6 +10,14 @@ angular
           self.action = action;
           self.event = singleEvent;
           self.usersAndComments = usersAndComments;
+
+          if (singleEvent.EventId === 6) {
+            self.host = "Paul";
+
+          }
+          if (singleEvent.EventId === 8) {
+
+          }
         },
         controllerAs: 'ctrl'
       });
