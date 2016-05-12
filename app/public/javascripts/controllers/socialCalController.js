@@ -106,11 +106,11 @@ angular
 
     self.alertOnEventClick = function(singleEvent) {
       self.getComments(singleEvent.EventId).then(function(comments) {
-        showCalendar(singleEvent, comments)
+        showEventInfo(singleEvent, comments)
       });
     };
 
-    function showCalendar(singleEvent, comments) {
+    function showEventInfo(singleEvent, comments) {
       alert.show('Clicked', singleEvent, comments, self.user.username);
       $('#calendar').fullCalendar('updateEvent', singleEvent);
     }
