@@ -1,7 +1,7 @@
 angular
   .module('socialCal')
   .config(['growlProvider', function (growlProvider) {
-  growlProvider.globalTimeToLive(8000);
+  growlProvider.globalTimeToLive(1000);
   }])
   .service('notificationService', ['growl', function(growl) {
     var self = this;

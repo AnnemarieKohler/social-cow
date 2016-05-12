@@ -10,25 +10,38 @@ angular
 
     self.user = userPersistenceService.getCookieData();
 
-    self.checkboxModel = {
-      value1 : "Yes"
-    };
+    self.notificationsOn = true;
 
     self.eventSources = [];
 
     socialCalGetService.getEventsFromDB().then(function(events) {
-      return events.map(function(singleEvent) {
+      events.map(function(singleEvent) {
         var correctDateFormat = moment(singleEvent.date.replace("00:00:00", singleEvent.time)).format('YYYY-MM-DDTHH:mm');
         var dateTime = moment(correctDateFormat).subtract(1, 'hours');
 
-        self.showLoginNotifications(events, parseInt(self.user.userId));
+        if (self.notificationsOn === true) {
+          self.showLoginNotifications(events, parseInt(self.user.userId));
+        }
 
-        return self.eventSources.push({
+        self.eventSources.push({
           title: singleEvent.title,
           start: dateTime,
-          EventId: singleEvent.id
+          EventId: singleEvent.id,
+          color: setEventColor(),
+          textColor: "black"
         });
+
+        function setEventColor() {
+          console.log(singleEvent.UserId);
+          console.log(parseInt(self.user.userId));
+          if(singleEvent.UserId === parseInt(self.user.userId)){
+            return "#AEDEFF";
+          } else {
+            return "#B0AEFF";
+          }
+        }
       });
+      self.notificationsOn = false;
     });
 
     self.getComments = function(id, singleEvent) {
@@ -75,12 +88,17 @@ angular
     };
 
     self.showLoginNotifications = function(events, id) {
-        notificationService.showCommentNotifications(events, id);
-        notificationService.showAttendingNotifications(events, id);
+      notificationService.showCommentNotifications(events, id);
+      notificationService.showAttendingNotifications(events, id);
     };
 
-    self.attendingNotification = function(checkValue) {
-      console.log(self.checkboxModel);
+    self.setNotificationsDone = function() {
+      userPersistenceService.setNotificationsDone();
+    };
+
+    self.checkNotificationsDone = function() {
+      console.log(userPersistenceService.checkNotificationsDone());
+      return userPersistenceService.checkNotificationsDone();
     };
 
     self.signUpUser = function(username, password) {
@@ -118,7 +136,9 @@ angular
           var dateTime = moment(eventDate.toString().replace("00:00:00", correctTimeFormat)).format('YYYY-MM-DDTHH:mm');
           self.eventSources.push({
             title: eventTitle,
-            start: dateTime
+            start: dateTime,
+            color: "#AEDEFF",
+            textColor: "black"
           });
         }
       })
@@ -152,7 +172,7 @@ angular
         contentHeight: 700,
         editable: true,
         header:{
-          left: 'month basicWeek basicDay agendaWeek agendaDay',
+          left: 'month agendaWeek agendaDay',
           center: 'title',
           right: 'today prev,next'
         },

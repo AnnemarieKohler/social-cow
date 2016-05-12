@@ -19,7 +19,14 @@ angular
         loginData = {};
 				$cookies.remove("currentUserId");
 				$cookies.remove("username");
-			}
+        $cookies.remove("notificationsDone");
+			},
+      setNotificationsDone: function() {
+        $cookies.put("notificationsDone", true);
+      },
+      checkNotificationsDone: function() {
+        return $cookies.get("notificationsDone");
+      }
 		};
 	}
 ]);
