@@ -15,4 +15,10 @@ angular
       });
     };
 
+    self.getCommentsUserFromDB = function(userId) {
+      return $http.get('/commentusers?userid=' + userId).then(function(res) {
+        return res.data;
+      });
+    };
+
   }]);
