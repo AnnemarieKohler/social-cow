@@ -4,10 +4,12 @@
 
 body {
   padding: 20px;
+  background-color: rgba(251, 223, 169, 0.05);
 }
 
 h1,h2,h3 {
   font-family: 'Happy Monkey', cursive;
+  color: #584963;
 }
 
 h5 {
@@ -20,6 +22,11 @@ li {
 
 a {
   color: #00B7FF;
+}
+
+.fc-view, .fc-month-view, .fc-basic-view {
+  background-color: #FFF;
+  border-radius: 8px;
 }
 
 .image {
