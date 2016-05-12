@@ -131,3 +131,16 @@ growl-notification.fading.ng-leave {
 growl-notification.fading.ng-leave.ng-leave-active {
     opacity: 0;
 }
+
+.scroll {
+  overflow-y: auto;
+  max-height: 200px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: Capriola, sans-serif;;
+}
+
+* {
+  font-family: 'Happy Monkey', cursive;;
+}
