@@ -48,7 +48,21 @@ module.exports = function(config) {
 
     autoWatch: true,
 
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS', 'PhantomJS_custom'],
+
+    customLaunchers: {
+      'PhantomJS_custom': {
+        base: 'PhantomJS',
+        options: {
+          windowName: 'my-window',
+          settings: {
+            webSecurityEnabled: false
+          },
+        },
+        flags: ['--load-images=true'],
+        debug: true
+      }
+    },
 
     plugins : [
       'karma-chrome-launcher',
@@ -56,7 +70,7 @@ module.exports = function(config) {
       'karma-spec-reporter'
     ],
 
-    singleRun: false,
+    singleRun: true,
 
     concurrency: Infinity
   })
