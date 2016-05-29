@@ -1,7 +1,7 @@
 describe('socialCalGetService', function() {
   beforeEach(module('socialCal'));
 
-  var service, socialCalPostService, socialCalGetService;
+  var socialCalPostService, socialCalGetService;
 
   var newEventDetails = { title: 'New Event',
                    date: '13/05/2016',
