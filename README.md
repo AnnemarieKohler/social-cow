@@ -14,7 +14,10 @@ Server side:
 
 End-to-end testing: Protractor
 
+## Instructions
 Click here for demo video: http://makers.annikanns.de/wp-content/uploads/2016/05/SocialCow.mp4
+
+To run the server `npm start` and go to localhost:8080
 
 ## Authors
 
