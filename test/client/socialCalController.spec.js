@@ -1,7 +1,7 @@
 describe('socialCalController', function() {
   beforeEach(module('socialCal'));
 
-  var ctrl, $httpBackend, socialCalPostService, $cookies, resolvingPromise;
+  var ctrl, $httpBackend, socialCalPostService, $cookies, resolvingPromise, $window;
   var userPersistenceService;
 
   var title = 'title';
@@ -10,10 +10,12 @@ describe('socialCalController', function() {
   var username = "Test User";
   var password = "password";
 
+  var fakeWindow = { location: { href: '' } };
+
   beforeEach(
     inject(function($controller, _socialCalPostService_, _userPersistenceService_,
                     _$httpBackend_, _$cookies_) {
-      ctrl = $controller('socialCalController');
+      ctrl = $controller('socialCalController', { $window: fakeWindow });
       socialCalPostService = _socialCalPostService_;
       userPersistenceService = _userPersistenceService_;
       $httpBackend = _$httpBackend_;

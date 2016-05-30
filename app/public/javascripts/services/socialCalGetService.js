@@ -9,4 +9,16 @@ angular
       });
     };
 
+    self.getCommentsFromDB = function(eventId) {
+      return $http.get('/comments?eventid=' + eventId).then(function(res) {
+        return res.data;
+      });
+    };
+    //
+    self.getCommentsUserFromDB = function(userId) {
+      return $http.get('/commentusers?userid=' + userId).then(function(res) {
+        return res.data;
+      });
+    };
+
   }]);
