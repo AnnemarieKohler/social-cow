@@ -2,6 +2,7 @@ describe('socialCalController', function() {
   beforeEach(module('socialCal'));
 
   var ctrl, $httpBackend, socialCalPostService, $cookies, resolvingPromise;
+  var userPersistenceService;
 
   var title = 'title';
   var date = '13/05/2016';
@@ -10,10 +11,11 @@ describe('socialCalController', function() {
   var password = "password";
 
   beforeEach(
-    inject(function($controller, _socialCalPostService_,
+    inject(function($controller, _socialCalPostService_, _userPersistenceService_,
                     _$httpBackend_, _$cookies_) {
       ctrl = $controller('socialCalController');
       socialCalPostService = _socialCalPostService_;
+      userPersistenceService = _userPersistenceService_;
       $httpBackend = _$httpBackend_;
       $cookies = _$cookies_;
       resolvingPromise = new Promise(function(resolve, reject) {
@@ -39,10 +41,10 @@ describe('socialCalController', function() {
   describe('.signUpUser', function() {
     it('calls socialCalPostService.postUserToDB with username and password',
     function(done) {
-      spyOn(socialCalPostService,'postUserToDB').and.returnValue(resolvingPromise);
-      ctrl.signUpUser(username, password);
-      expect(socialCalPostService.postUserToDB).toHaveBeenCalledWith(username, password);
-      done();
+        spyOn(socialCalPostService,'postUserToDB').and.returnValue(resolvingPromise);
+        ctrl.signUpUser(username, password);
+        expect(socialCalPostService.postUserToDB).toHaveBeenCalledWith(username, password);
+        done();
     });
   });
 
@@ -55,6 +57,18 @@ describe('socialCalController', function() {
       done();
     });
   });
+
+  describe('.signOutUser', function() {
+    it('calls userPersistenceService.clearCookieData',
+    function(done) {
+      spyOn(userPersistenceService,'clearCookieData').and.returnValue('');
+      ctrl.signOutUser();
+      expect(userPersistenceService.clearCookieData).toHaveBeenCalled();
+      done();
+    });
+  });
+
+
 
 
 });
