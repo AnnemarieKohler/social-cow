@@ -1,7 +1,7 @@
 describe('socialCalPostService', function() {
   beforeEach(module('socialCal'));
 
-  var service, socialCalPostService;
+  var socialCalPostService, $httpBackend;
 
   var title = 'New Event';
   var date = '13/05/2016';
@@ -16,7 +16,7 @@ describe('socialCalPostService', function() {
     $httpBackend = _$httpBackend_;
   }));
 
-  describe('#postEventsToDB', function() {
+  describe('.postEventsToDB', function() {
     it('calls $http', function() {
       $httpBackend.expectPOST("/events").respond(200);
       socialCalPostService.postEventsToDB(title, date, time).then(function(res) {
@@ -26,10 +26,20 @@ describe('socialCalPostService', function() {
     });
   });
 
-  describe('#postUserToDB', function() {
+  describe('.postUserToDB', function() {
     it('calls $http', function() {
       $httpBackend.expectPOST("/users").respond(200);
       socialCalPostService.postUserToDB(newUserDetails).then(function(res) {
+        expect(res.status).toEqual(200);
+      });
+      $httpBackend.flush();
+    });
+  });
+
+  describe('.validateUserInDB', function() {
+    it('calls $http.post', function() {
+      $httpBackend.expectPOST("/sessions").respond(200);
+      socialCalPostService.validateUserInDB(newUserDetails).then(function(res) {
         expect(res.status).toEqual(200);
       });
       $httpBackend.flush();
