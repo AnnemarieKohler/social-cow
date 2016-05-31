@@ -5,8 +5,9 @@
   "scripts": {
     "start": "node ./app/bin/www",
     "test": "karma start test/karma.conf.js",
-    "e2e": "NODE_ENV=test npm start",
-    "mocha": "mocha"
+    "e2e": "protractor test/protractor.conf.js",
+    "mocha": "mocha",
+    "webdriver": "webdriver-manager update && webdriver-manager start"
   },
   "dependencies": {
     "angular-ui-bootstrap": "^1.3.2",
