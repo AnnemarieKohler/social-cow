@@ -9,6 +9,7 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
 
     files: [
+      'node_modules/babel-polyfill/dist/polyfill.js',
       'app/public/bower_components/jquery/dist/jquery.js',
       'app/public/bower_components/angular/angular.js',
       'app/public/bower_components/moment/min/moment.min.js',
@@ -48,15 +49,16 @@ module.exports = function(config) {
 
     autoWatch: true,
 
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
     plugins : [
+      'karma-phantomjs-launcher',
       'karma-chrome-launcher',
       'karma-jasmine',
       'karma-spec-reporter'
     ],
 
-    singleRun: false,
+    singleRun: true,
 
     concurrency: Infinity
   })
