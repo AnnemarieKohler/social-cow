@@ -29,7 +29,7 @@
     "angular-mocks": "latest"
   },
   "resolutions": {
-    "angular": "latest",
+    "angular": "latest"
   }
 
 }
