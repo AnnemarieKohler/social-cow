@@ -16,9 +16,6 @@
     "test",
     "tests"
   ],
-  "resolutions": {
-    "angular": "latest"
-  },
   "dependencies": {
     "angular": "latest",
     "angular-cookies": "latest",
