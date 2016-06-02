@@ -24,9 +24,12 @@
     "fullcalendar": "latest",
     "ui.bootstrap": "latest",
     "angular-ui-calendar": "latest"
-
   },
   "devDependencies": {
     "angular-mocks": "latest"
+  },
+  "resolutions": {
+    "angular": "latest",
   }
+
 }
