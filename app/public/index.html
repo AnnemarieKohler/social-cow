@@ -1,74 +1,56 @@
 <!DOCTYPE html>
 <html ng-app="socialCal">
-
   <head>
     <meta charset="utf-8">
-    <title>SocialCal</title>
-
-
+    <title>SocialCow</title>
     <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
-
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-cookies.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-animate.js"></script>
-
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
-
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.6/angular-animate.js"></script>
+    <script type="text/javascript" src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
     <script type="text/javascript" src="bower_components/angular-ui-calendar/src/calendar.js"></script>
     <script type="text/javascript" src="bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
     <script type="text/javascript" src="bower_components/fullcalendar/dist/gcal.js"></script>
-    <script src="bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js"></script>
-    <link href="bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="stylesheets/style.css"/>
-    <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css"/>
-
+    <script type="text/javascript" src="bower_components/angular-bootstrap-calendar/dist/js/angular-bootstrap-calendar-tpls.min.js"></script>
     <script type="text/javascript" src="/javascripts/app.js"></script>
     <script type="text/javascript" src="/javascripts/controllers/socialCalController.js"></script>
     <script type="text/javascript" src="/javascripts/services/socialCalPostService.js"></script>
     <script type="text/javascript" src="/javascripts/services/socialCalGetService.js"></script>
     <script type="text/javascript" src="/javascripts/factories/userPersistenceService.js"></script>
     <script type="text/javascript" src="/javascripts/factories/alert.js"></script>
-
+    <link rel="stylesheet" href="bower_components/angular-bootstrap-calendar/dist/css/angular-bootstrap-calendar.min.css"/>
+    <link rel="stylesheet" href="stylesheets/style.css"/>
+    <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css"/>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   </head>
-
-  <body>
-    <section ng-controller="socialCalController as ctrl">
-        <div ng-if="ctrl.user == undefined">
-
-
-          <h2>Log into SocialCal</h2>
-          <form>
-            <input id="sign-in-username" ng-model="usernameSignIn" placeholder="Enter username">
-            <input type="password" id="sign-in-password" ng-model="passwordSignIn" placeholder="Enter password">
-            <button id="sign-in-submit" type="submit" ng-click="ctrl.signInUser(usernameSignIn, passwordSignIn)">Sign In</button>
-          </form>
-
-          <h3>Don't have an account yet? Sign up!</h3>
-          <form>
-            <input id="new-user-username" ng-model="usernameSignUp" placeholder="Enter username">
-            <input type="password" id="new-user-password" ng-model="passwordSignUp" placeholder="Enter password">
-            <button id="new-user-submit" type="submit" ng-click="ctrl.signUpUser(usernameSignUp, passwordSignUp)">Sign Up</button>
-          </form>
-
-        </div>
-
-        <div ng-if="ctrl.user != undefined">
-          <h1 id="user-welcome">Welcome, {{ ctrl.user }}</h1>
-          <a href="/" ng-click="ctrl.signOutUser()" target="_self"><button id="user-sign-out" type="submit">Sign Out</button></a>
-          <section>
-              <input id="new-event-title" ng-model="eventTitle" placeholder="Event title">
-              <input type="date" id="new-event-date" ng-model="eventDate" placeholder="Event date">
-              <input id="new-event-time" ng-model="eventTime" placeholder="Event time" type="time">
-              <button id="new-event-submit" type="submit" ng-click="ctrl.addEvent(eventTitle, eventDate, eventTime)">Create</button>
-          </section>
-          <section>
-            <div id='calendar' ui-calendar='ctrl.uiConfig.calendar' ng-model='ctrl.eventSources'></div>
-          </section>
-        </div>
-
-    </section>
+  <body ng-controller="socialCalController as ctrl">
+    <div ng-if="!ctrl.user">
+      <h2>Log into SocialCal</h2>
+      <form>
+        <input id="sign-in-username" ng-model="usernameSignIn" placeholder="Enter username">
+        <input type="password" id="sign-in-password" ng-model="passwordSignIn" placeholder="Enter password">
+        <button id="sign-in-submit" type="submit" ng-click="ctrl.signInUser(usernameSignIn, passwordSignIn)">Sign In</button>
+      </form>
+      <h3>Don't have an account yet? Sign up!</h3>
+      <form>
+        <input id="new-user-username" ng-model="usernameSignUp" placeholder="Enter username">
+        <input type="password" id="new-user-password" ng-model="passwordSignUp" placeholder="Enter password">
+        <button id="new-user-submit" type="submit" ng-click="ctrl.signUpUser(usernameSignUp, passwordSignUp)">Sign Up</button>
+      </form>
+    </div>
+    <div ng-if="ctrl.user">
+      <h1 id="user-welcome">Welcome, {{ ctrl.user }}</h1>
+      <a href="/" ng-click="ctrl.signOutUser()" target="_self"><button id="user-sign-out" type="submit">Sign Out</button></a>
+      <section>
+          <input id="new-event-title" ng-model="eventTitle" placeholder="Event title">
+          <input type="date" id="new-event-date" ng-model="eventDate" placeholder="Event date">
+          <input id="new-event-time" ng-model="eventTime" placeholder="Event time" type="time">
+          <button id="new-event-submit" type="submit" ng-click="ctrl.addEvent(eventTitle, eventDate, eventTime)">Create</button>
+      </section>
+      <section>
+        <div id="calendar" ui-calendar="ctrl.uiConfig.calendar" ng-model="ctrl.eventSources"></div>
+      </section>
+    </div>
   </body>
-
 </html>
